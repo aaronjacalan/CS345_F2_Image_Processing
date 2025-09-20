@@ -21,36 +21,6 @@ namespace CS345___Image_Processing
 			InitializeComponent();
 		}
 
-		// MOUSE BUTTONS
-		private void btnMinimize_Click(object sender, EventArgs e)
-		{
-			this.WindowState = FormWindowState.Minimized;
-		}
-
-		private void btnClose_Click(object sender, EventArgs e)
-		{
-			this.Close();
-		}
-
-		private void MouseEnter_Color(object sender, EventArgs e)
-		{
-			if (sender is Button btn)
-			{
-				btn.BackColor = Color.FromArgb(255, 0, 0);
-				btn.ForeColor = Color.White;
-			}
-		}
-
-		private void MouseLeave_Color(object sender, EventArgs e)
-		{
-			if (sender is Button btn)
-			{
-				btn.BackColor = Color.Transparent;
-				btn.ForeColor = Color.Black;
-			}
-		}
-
-
 		// DRAG FORM
 		private void TitleBar_MouseDown(object sender, MouseEventArgs e)
 		{
@@ -77,6 +47,34 @@ namespace CS345___Image_Processing
 			isDragging = false;
 		}
 
+		// MOUSE BUTTONS
+		private void MouseEnter_Color(object sender, EventArgs e)
+		{
+			if (sender is Button btn)
+			{
+				btn.BackColor = Color.FromArgb(255, 0, 0);
+				btn.ForeColor = Color.White;
+			}
+		}
+
+		private void MouseLeave_Color(object sender, EventArgs e)
+		{
+			if (sender is Button btn)
+			{
+				btn.BackColor = Color.Transparent;
+				btn.ForeColor = Color.Black;
+			}
+		}
+
+		private void btnClose_Click(object sender, EventArgs e)
+		{
+			this.Close();
+		}
+
+		private void btnMinimize_Click(object sender, EventArgs e)
+		{
+			this.WindowState = FormWindowState.Minimized;
+		}
 	}
 
 }
