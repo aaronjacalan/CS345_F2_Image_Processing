@@ -50,11 +50,11 @@
 			this.normalSpeedGreyscaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.hiSpeedGreyscaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.inversionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.normalSpeedInversionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.hiSpeedInversionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.histogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.sepiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-			this.normalSpeedInversionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.hiSpeedInversionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.AppIcon)).BeginInit();
 			this.titleBarPanel.SuspendLayout();
@@ -159,6 +159,10 @@
 			this.openFileDialog1.FileName = "openFileDialog1";
 			this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
 			// 
+			// saveFileDialog1
+			// 
+			this.saveFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.saveFileDialog1_FileOk);
+			// 
 			// pictureBox2
 			// 
 			this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
@@ -189,7 +193,7 @@
 			this.openToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
 			this.openToolStripMenuItem.ForeColor = System.Drawing.Color.White;
 			this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-			this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.openToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
 			this.openToolStripMenuItem.Text = "Open";
 			this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
 			// 
@@ -198,7 +202,7 @@
 			this.useWebcamToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
 			this.useWebcamToolStripMenuItem.ForeColor = System.Drawing.Color.White;
 			this.useWebcamToolStripMenuItem.Name = "useWebcamToolStripMenuItem";
-			this.useWebcamToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.useWebcamToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
 			this.useWebcamToolStripMenuItem.Text = "Use Webcam";
 			// 
 			// saveToolStripMenuItem
@@ -208,6 +212,7 @@
 			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
 			this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.saveToolStripMenuItem.Text = "Save";
+			this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
 			// 
 			// filtersToolStripMenuItem
 			// 
@@ -238,14 +243,14 @@
 			// normalSpeedCopyToolStripMenuItem
 			// 
 			this.normalSpeedCopyToolStripMenuItem.Name = "normalSpeedCopyToolStripMenuItem";
-			this.normalSpeedCopyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.normalSpeedCopyToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
 			this.normalSpeedCopyToolStripMenuItem.Text = "Normal";
 			this.normalSpeedCopyToolStripMenuItem.Click += new System.EventHandler(this.normalSpeedToolStripMenuItem_Click);
 			// 
 			// highSpeedCopyToolStripMenuItem
 			// 
 			this.highSpeedCopyToolStripMenuItem.Name = "highSpeedCopyToolStripMenuItem";
-			this.highSpeedCopyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.highSpeedCopyToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
 			this.highSpeedCopyToolStripMenuItem.Text = "Pointers";
 			this.highSpeedCopyToolStripMenuItem.Click += new System.EventHandler(this.highSpeedCopyToolStripMenuItem_Click);
 			// 
@@ -263,14 +268,14 @@
 			// normalSpeedGreyscaleToolStripMenuItem
 			// 
 			this.normalSpeedGreyscaleToolStripMenuItem.Name = "normalSpeedGreyscaleToolStripMenuItem";
-			this.normalSpeedGreyscaleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.normalSpeedGreyscaleToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
 			this.normalSpeedGreyscaleToolStripMenuItem.Text = "Normal";
 			this.normalSpeedGreyscaleToolStripMenuItem.Click += new System.EventHandler(this.normalSpeedGreyscaleToolStripMenuItem_Click);
 			// 
 			// hiSpeedGreyscaleToolStripMenuItem
 			// 
 			this.hiSpeedGreyscaleToolStripMenuItem.Name = "hiSpeedGreyscaleToolStripMenuItem";
-			this.hiSpeedGreyscaleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.hiSpeedGreyscaleToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
 			this.hiSpeedGreyscaleToolStripMenuItem.Text = "Pointers";
 			this.hiSpeedGreyscaleToolStripMenuItem.Click += new System.EventHandler(this.hiSpeedGreyscaleToolStripMenuItem_Click);
 			// 
@@ -284,6 +289,20 @@
 			this.inversionToolStripMenuItem.Name = "inversionToolStripMenuItem";
 			this.inversionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.inversionToolStripMenuItem.Text = "Color Inversion";
+			// 
+			// normalSpeedInversionToolStripMenuItem
+			// 
+			this.normalSpeedInversionToolStripMenuItem.Name = "normalSpeedInversionToolStripMenuItem";
+			this.normalSpeedInversionToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+			this.normalSpeedInversionToolStripMenuItem.Text = "Normal";
+			this.normalSpeedInversionToolStripMenuItem.Click += new System.EventHandler(this.normalSpeedInversionToolStripMenuItem_Click);
+			// 
+			// hiSpeedInversionToolStripMenuItem
+			// 
+			this.hiSpeedInversionToolStripMenuItem.Name = "hiSpeedInversionToolStripMenuItem";
+			this.hiSpeedInversionToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
+			this.hiSpeedInversionToolStripMenuItem.Text = "Pointers";
+			this.hiSpeedInversionToolStripMenuItem.Click += new System.EventHandler(this.hiSpeedInversionToolStripMenuItem_Click_1);
 			// 
 			// histogramToolStripMenuItem
 			// 
@@ -314,20 +333,6 @@
 			this.menuStrip1.Size = new System.Drawing.Size(1215, 24);
 			this.menuStrip1.TabIndex = 3;
 			this.menuStrip1.Text = "menuStrip1";
-			// 
-			// normalSpeedInversionToolStripMenuItem
-			// 
-			this.normalSpeedInversionToolStripMenuItem.Name = "normalSpeedInversionToolStripMenuItem";
-			this.normalSpeedInversionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.normalSpeedInversionToolStripMenuItem.Text = "Normal";
-			this.normalSpeedInversionToolStripMenuItem.Click += new System.EventHandler(this.normalSpeedInversionToolStripMenuItem_Click);
-			// 
-			// hiSpeedInversionToolStripMenuItem
-			// 
-			this.hiSpeedInversionToolStripMenuItem.Name = "hiSpeedInversionToolStripMenuItem";
-			this.hiSpeedInversionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.hiSpeedInversionToolStripMenuItem.Text = "Pointers";
-			this.hiSpeedInversionToolStripMenuItem.Click += new System.EventHandler(this.hiSpeedInversionToolStripMenuItem_Click_1);
 			// 
 			// Form1
 			// 

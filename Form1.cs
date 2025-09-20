@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,12 +17,15 @@ namespace CS345___Image_Processing
 		private bool isDragging = false;
 		private Point lastCursor;
 		private Point lastForm;
+		private string originalImagePath = "";
 
 		public Form1()
 		{
 			InitializeComponent();
 		}
 
+
+		
 		// DRAG FORM
 		private void TitleBar_MouseDown(object sender, MouseEventArgs e)
 		{
@@ -47,6 +51,8 @@ namespace CS345___Image_Processing
 		{
 			isDragging = false;
 		}
+
+
 
 		// MOUSE BUTTONS
 		private void MouseEnter_Color(object sender, EventArgs e)
@@ -77,6 +83,9 @@ namespace CS345___Image_Processing
 			this.WindowState = FormWindowState.Minimized;
 		}
 
+
+
+		// FILE MENU
 		private void openToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			openFileDialog1.Title = "Open Image";
@@ -92,6 +101,8 @@ namespace CS345___Image_Processing
 			{
 				Image img = Image.FromFile(openFileDialog1.FileName);
 				pictureBox1.Image = img;
+
+				originalImagePath = openFileDialog1.FileName;
 			}
 			catch (Exception ex)
 			{
@@ -99,44 +110,52 @@ namespace CS345___Image_Processing
 			}
 		}
 
-		private void sepiaToolStripMenuItem_Click(object sender, EventArgs e)
+		private void saveFileDialog1_FileOk(object sender, CancelEventArgs e)
 		{
-			if (pictureBox1.Image == null)
+			if (pictureBox2.Image != null)
 			{
-				MessageBox.Show("No image to apply sepia effect!");
+				string fileName = saveFileDialog1.FileName;
+				pictureBox2.Image.Save(fileName, ImageFormat.Png);
+				MessageBox.Show("Image saved!");
+			}
+			else
+			{
+				MessageBox.Show("No image to save!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
+		private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (pictureBox2.Image == null)
+			{
+				MessageBox.Show("No image to save!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				return;
 			}
 
-			Bitmap original = new Bitmap(pictureBox1.Image);
-			Bitmap sepia = new Bitmap(original.Width, original.Height);
-
-			for (int x = 0; x < original.Width; x++)
+			string originalFileName = "image";
+			if (!string.IsNullOrEmpty(originalImagePath))
 			{
-				for (int y = 0; y < original.Height; y++)
-				{
-					Color pixelColor = original.GetPixel(x, y);
-
-					int sepiaRed = (int)((pixelColor.R * 0.45) + (pixelColor.G * 0.85) + (pixelColor.B * 0.20));
-					int sepiaGreen = (int)((pixelColor.R * 0.40) + (pixelColor.G * 0.75) + (pixelColor.B * 0.15));
-					int sepiaBlue = (int)((pixelColor.R * 0.25) + (pixelColor.G * 0.55) + (pixelColor.B * 0.10));
-
-					if (sepiaRed > 255) sepiaRed = 255;
-					if (sepiaGreen > 255) sepiaGreen = 255;
-					if (sepiaBlue > 255) sepiaBlue = 255;
-
-					Color sepiaColor = Color.FromArgb(sepiaRed, sepiaGreen, sepiaBlue);
-					sepia.SetPixel(x, y, sepiaColor);
-				}
+				originalFileName = Path.GetFileNameWithoutExtension(originalImagePath);
 			}
 
-			pictureBox2.Image = sepia;
+			string editedFileName = originalFileName + " - edited";
+
+			saveFileDialog1.Filter = "PNG Images|*.png";
+			saveFileDialog1.DefaultExt = "png";
+			saveFileDialog1.AddExtension = true;
+			saveFileDialog1.FileName = editedFileName;
+
+			saveFileDialog1.ShowDialog();
 		}
 
+
+
+		// FILTERS AND EFFECTS
 		private void normalSpeedToolStripMenuItem_Click(object sender, EventArgs e)
 		{
 			if (pictureBox1.Image == null)
 			{
-				MessageBox.Show("No image to copy!");
+				MessageBox.Show("No image to copy!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 
@@ -159,7 +178,7 @@ namespace CS345___Image_Processing
 		{
 			if (pictureBox1.Image == null)
 			{
-				MessageBox.Show("No image to copy!");
+				MessageBox.Show("No image to copy!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 
@@ -191,7 +210,7 @@ namespace CS345___Image_Processing
 		{
 			if (pictureBox1.Image == null)
 			{
-				MessageBox.Show("No image to convert to greyscale!");
+				MessageBox.Show("No image to convert to greyscale!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 
@@ -216,7 +235,7 @@ namespace CS345___Image_Processing
 		{
 			if (pictureBox1.Image == null)
 			{
-				MessageBox.Show("No image to convert to greyscale!");
+				MessageBox.Show("No image to convert to greyscale!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 
@@ -260,7 +279,7 @@ namespace CS345___Image_Processing
 		{
 			if (pictureBox1.Image == null)
 			{
-				MessageBox.Show("No image to invert!");
+				MessageBox.Show("No image to invert!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 
@@ -289,7 +308,7 @@ namespace CS345___Image_Processing
 		{
 			if (pictureBox1.Image == null)
 			{
-				MessageBox.Show("No image to invert!");
+				MessageBox.Show("No image to invert!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 
@@ -335,7 +354,7 @@ namespace CS345___Image_Processing
 		{
 			if (pictureBox1.Image == null)
 			{
-				MessageBox.Show("No image to create histogram!");
+				MessageBox.Show("No image to create histogram!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
 				return;
 			}
 
@@ -370,6 +389,39 @@ namespace CS345___Image_Processing
 			}
 
 			pictureBox2.Image = histogram;
+		}
+
+		private void sepiaToolStripMenuItem_Click(object sender, EventArgs e)
+		{
+			if (pictureBox1.Image == null)
+			{
+				MessageBox.Show("No image to apply sepia effect!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			Bitmap original = new Bitmap(pictureBox1.Image);
+			Bitmap sepia = new Bitmap(original.Width, original.Height);
+
+			for (int x = 0; x < original.Width; x++)
+			{
+				for (int y = 0; y < original.Height; y++)
+				{
+					Color pixelColor = original.GetPixel(x, y);
+
+					int sepiaRed = (int)((pixelColor.R * 0.45) + (pixelColor.G * 0.85) + (pixelColor.B * 0.20));
+					int sepiaGreen = (int)((pixelColor.R * 0.40) + (pixelColor.G * 0.75) + (pixelColor.B * 0.15));
+					int sepiaBlue = (int)((pixelColor.R * 0.25) + (pixelColor.G * 0.55) + (pixelColor.B * 0.10));
+
+					if (sepiaRed > 255) sepiaRed = 255;
+					if (sepiaGreen > 255) sepiaGreen = 255;
+					if (sepiaBlue > 255) sepiaBlue = 255;
+
+					Color sepiaColor = Color.FromArgb(sepiaRed, sepiaGreen, sepiaBlue);
+					sepia.SetPixel(x, y, sepiaColor);
+				}
+			}
+
+			pictureBox2.Image = sepia;
 		}
 
 	}
