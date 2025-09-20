@@ -43,11 +43,18 @@
 			this.useWebcamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.filtersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.blurToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.sharpenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.grayscaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.copyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.normalSpeedCopyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.highSpeedCopyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.greyscaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.normalSpeedGreyscaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.hiSpeedGreyscaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.inversionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.histogramToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.sepiaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+			this.normalSpeedInversionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.hiSpeedInversionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.AppIcon)).BeginInit();
 			this.titleBarPanel.SuspendLayout();
@@ -63,7 +70,7 @@
 			this.pictureBox1.Margin = new System.Windows.Forms.Padding(5);
 			this.pictureBox1.Name = "pictureBox1";
 			this.pictureBox1.Size = new System.Drawing.Size(590, 443);
-			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBox1.TabIndex = 0;
 			this.pictureBox1.TabStop = false;
 			// 
@@ -74,7 +81,7 @@
 			this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnClose.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold);
 			this.btnClose.ForeColor = System.Drawing.Color.Black;
-			this.btnClose.Location = new System.Drawing.Point(1185, 0);
+			this.btnClose.Location = new System.Drawing.Point(1183, 0);
 			this.btnClose.Margin = new System.Windows.Forms.Padding(0);
 			this.btnClose.Name = "btnClose";
 			this.btnClose.Size = new System.Drawing.Size(32, 32);
@@ -92,7 +99,7 @@
 			this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnMinimize.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold);
 			this.btnMinimize.ForeColor = System.Drawing.Color.Black;
-			this.btnMinimize.Location = new System.Drawing.Point(1153, 0);
+			this.btnMinimize.Location = new System.Drawing.Point(1151, 0);
 			this.btnMinimize.Margin = new System.Windows.Forms.Padding(0);
 			this.btnMinimize.Name = "btnMinimize";
 			this.btnMinimize.Size = new System.Drawing.Size(32, 32);
@@ -114,6 +121,9 @@
 			this.lblTitle.TabIndex = 0;
 			this.lblTitle.Text = "CS345 - Image Processing App";
 			this.lblTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+			this.lblTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TitleBar_MouseDown);
+			this.lblTitle.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TitleBar_MouseMove);
+			this.lblTitle.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TitleBar_MouseUp);
 			// 
 			// AppIcon
 			// 
@@ -124,6 +134,9 @@
 			this.AppIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.AppIcon.TabIndex = 31;
 			this.AppIcon.TabStop = false;
+			this.AppIcon.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TitleBar_MouseDown);
+			this.AppIcon.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TitleBar_MouseMove);
+			this.AppIcon.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TitleBar_MouseUp);
 			// 
 			// titleBarPanel
 			// 
@@ -135,12 +148,16 @@
 			this.titleBarPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.titleBarPanel.Location = new System.Drawing.Point(0, 0);
 			this.titleBarPanel.Name = "titleBarPanel";
-			this.titleBarPanel.Size = new System.Drawing.Size(1217, 32);
+			this.titleBarPanel.Size = new System.Drawing.Size(1215, 32);
 			this.titleBarPanel.TabIndex = 0;
+			this.titleBarPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TitleBar_MouseDown);
+			this.titleBarPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TitleBar_MouseMove);
+			this.titleBarPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TitleBar_MouseUp);
 			// 
 			// openFileDialog1
 			// 
 			this.openFileDialog1.FileName = "openFileDialog1";
+			this.openFileDialog1.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog1_FileOk);
 			// 
 			// pictureBox2
 			// 
@@ -150,7 +167,7 @@
 			this.pictureBox2.Margin = new System.Windows.Forms.Padding(5);
 			this.pictureBox2.Name = "pictureBox2";
 			this.pictureBox2.Size = new System.Drawing.Size(590, 443);
-			this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+			this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBox2.TabIndex = 4;
 			this.pictureBox2.TabStop = false;
 			// 
@@ -169,73 +186,122 @@
 			// 
 			// openToolStripMenuItem
 			// 
-			this.openToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+			this.openToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
 			this.openToolStripMenuItem.ForeColor = System.Drawing.Color.White;
 			this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-			this.openToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+			this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.openToolStripMenuItem.Text = "Open";
+			this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
 			// 
 			// useWebcamToolStripMenuItem
 			// 
-			this.useWebcamToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+			this.useWebcamToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
 			this.useWebcamToolStripMenuItem.ForeColor = System.Drawing.Color.White;
 			this.useWebcamToolStripMenuItem.Name = "useWebcamToolStripMenuItem";
-			this.useWebcamToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+			this.useWebcamToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.useWebcamToolStripMenuItem.Text = "Use Webcam";
 			// 
 			// saveToolStripMenuItem
 			// 
-			this.saveToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+			this.saveToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
 			this.saveToolStripMenuItem.ForeColor = System.Drawing.Color.White;
 			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-			this.saveToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
+			this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.saveToolStripMenuItem.Text = "Save";
 			// 
 			// filtersToolStripMenuItem
 			// 
 			this.filtersToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
 			this.filtersToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.blurToolStripMenuItem,
-            this.sharpenToolStripMenuItem,
-            this.grayscaleToolStripMenuItem,
+            this.copyToolStripMenuItem,
+            this.greyscaleToolStripMenuItem,
+            this.inversionToolStripMenuItem,
+            this.histogramToolStripMenuItem,
             this.sepiaToolStripMenuItem});
 			this.filtersToolStripMenuItem.Font = new System.Drawing.Font("Consolas", 9F);
 			this.filtersToolStripMenuItem.ForeColor = System.Drawing.Color.White;
 			this.filtersToolStripMenuItem.Name = "filtersToolStripMenuItem";
 			this.filtersToolStripMenuItem.Size = new System.Drawing.Size(68, 20);
-			this.filtersToolStripMenuItem.Text = "F&ilters";
+			this.filtersToolStripMenuItem.Text = "Filters";
 			// 
-			// blurToolStripMenuItem
+			// copyToolStripMenuItem
 			// 
-			this.blurToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-			this.blurToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-			this.blurToolStripMenuItem.Name = "blurToolStripMenuItem";
-			this.blurToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
-			this.blurToolStripMenuItem.Text = "Greyscale";
+			this.copyToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
+			this.copyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.normalSpeedCopyToolStripMenuItem,
+            this.highSpeedCopyToolStripMenuItem});
+			this.copyToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+			this.copyToolStripMenuItem.Name = "copyToolStripMenuItem";
+			this.copyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.copyToolStripMenuItem.Text = "Copy";
 			// 
-			// sharpenToolStripMenuItem
+			// normalSpeedCopyToolStripMenuItem
 			// 
-			this.sharpenToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-			this.sharpenToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-			this.sharpenToolStripMenuItem.Name = "sharpenToolStripMenuItem";
-			this.sharpenToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
-			this.sharpenToolStripMenuItem.Text = "Color Inversion";
+			this.normalSpeedCopyToolStripMenuItem.Name = "normalSpeedCopyToolStripMenuItem";
+			this.normalSpeedCopyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.normalSpeedCopyToolStripMenuItem.Text = "Normal";
+			this.normalSpeedCopyToolStripMenuItem.Click += new System.EventHandler(this.normalSpeedToolStripMenuItem_Click);
 			// 
-			// grayscaleToolStripMenuItem
+			// highSpeedCopyToolStripMenuItem
 			// 
-			this.grayscaleToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
-			this.grayscaleToolStripMenuItem.ForeColor = System.Drawing.Color.White;
-			this.grayscaleToolStripMenuItem.Name = "grayscaleToolStripMenuItem";
-			this.grayscaleToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
-			this.grayscaleToolStripMenuItem.Text = "Histogram";
+			this.highSpeedCopyToolStripMenuItem.Name = "highSpeedCopyToolStripMenuItem";
+			this.highSpeedCopyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.highSpeedCopyToolStripMenuItem.Text = "Pointers";
+			this.highSpeedCopyToolStripMenuItem.Click += new System.EventHandler(this.highSpeedCopyToolStripMenuItem_Click);
+			// 
+			// greyscaleToolStripMenuItem
+			// 
+			this.greyscaleToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
+			this.greyscaleToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.normalSpeedGreyscaleToolStripMenuItem,
+            this.hiSpeedGreyscaleToolStripMenuItem});
+			this.greyscaleToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+			this.greyscaleToolStripMenuItem.Name = "greyscaleToolStripMenuItem";
+			this.greyscaleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.greyscaleToolStripMenuItem.Text = "Greyscale";
+			// 
+			// normalSpeedGreyscaleToolStripMenuItem
+			// 
+			this.normalSpeedGreyscaleToolStripMenuItem.Name = "normalSpeedGreyscaleToolStripMenuItem";
+			this.normalSpeedGreyscaleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.normalSpeedGreyscaleToolStripMenuItem.Text = "Normal";
+			this.normalSpeedGreyscaleToolStripMenuItem.Click += new System.EventHandler(this.normalSpeedGreyscaleToolStripMenuItem_Click);
+			// 
+			// hiSpeedGreyscaleToolStripMenuItem
+			// 
+			this.hiSpeedGreyscaleToolStripMenuItem.Name = "hiSpeedGreyscaleToolStripMenuItem";
+			this.hiSpeedGreyscaleToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.hiSpeedGreyscaleToolStripMenuItem.Text = "Pointers";
+			this.hiSpeedGreyscaleToolStripMenuItem.Click += new System.EventHandler(this.hiSpeedGreyscaleToolStripMenuItem_Click);
+			// 
+			// inversionToolStripMenuItem
+			// 
+			this.inversionToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
+			this.inversionToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.normalSpeedInversionToolStripMenuItem,
+            this.hiSpeedInversionToolStripMenuItem});
+			this.inversionToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+			this.inversionToolStripMenuItem.Name = "inversionToolStripMenuItem";
+			this.inversionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.inversionToolStripMenuItem.Text = "Color Inversion";
+			// 
+			// histogramToolStripMenuItem
+			// 
+			this.histogramToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
+			this.histogramToolStripMenuItem.ForeColor = System.Drawing.Color.White;
+			this.histogramToolStripMenuItem.Name = "histogramToolStripMenuItem";
+			this.histogramToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.histogramToolStripMenuItem.Text = "Histogram";
+			this.histogramToolStripMenuItem.Click += new System.EventHandler(this.histogramToolStripMenuItem_Click);
 			// 
 			// sepiaToolStripMenuItem
 			// 
-			this.sepiaToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(45)))), ((int)(((byte)(48)))));
+			this.sepiaToolStripMenuItem.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
 			this.sepiaToolStripMenuItem.ForeColor = System.Drawing.Color.White;
 			this.sepiaToolStripMenuItem.Name = "sepiaToolStripMenuItem";
-			this.sepiaToolStripMenuItem.Size = new System.Drawing.Size(179, 22);
+			this.sepiaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.sepiaToolStripMenuItem.Text = "Sepia";
+			this.sepiaToolStripMenuItem.Click += new System.EventHandler(this.sepiaToolStripMenuItem_Click);
 			// 
 			// menuStrip1
 			// 
@@ -245,16 +311,30 @@
             this.filtersToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 32);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(1217, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(1215, 24);
 			this.menuStrip1.TabIndex = 3;
 			this.menuStrip1.Text = "menuStrip1";
+			// 
+			// normalSpeedInversionToolStripMenuItem
+			// 
+			this.normalSpeedInversionToolStripMenuItem.Name = "normalSpeedInversionToolStripMenuItem";
+			this.normalSpeedInversionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.normalSpeedInversionToolStripMenuItem.Text = "Normal";
+			this.normalSpeedInversionToolStripMenuItem.Click += new System.EventHandler(this.normalSpeedInversionToolStripMenuItem_Click);
+			// 
+			// hiSpeedInversionToolStripMenuItem
+			// 
+			this.hiSpeedInversionToolStripMenuItem.Name = "hiSpeedInversionToolStripMenuItem";
+			this.hiSpeedInversionToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+			this.hiSpeedInversionToolStripMenuItem.Text = "Pointers";
+			this.hiSpeedInversionToolStripMenuItem.Click += new System.EventHandler(this.hiSpeedInversionToolStripMenuItem_Click_1);
 			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(42)))));
-			this.ClientSize = new System.Drawing.Size(1217, 528);
+			this.ClientSize = new System.Drawing.Size(1215, 528);
 			this.Controls.Add(this.pictureBox2);
 			this.Controls.Add(this.menuStrip1);
 			this.Controls.Add(this.titleBarPanel);
@@ -292,10 +372,17 @@
 		private System.Windows.Forms.ToolStripMenuItem useWebcamToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem filtersToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem blurToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem sharpenToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem grayscaleToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem greyscaleToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem inversionToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem histogramToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem sepiaToolStripMenuItem;
 		private System.Windows.Forms.MenuStrip menuStrip1;
+		private System.Windows.Forms.ToolStripMenuItem copyToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem normalSpeedCopyToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem highSpeedCopyToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem normalSpeedGreyscaleToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem hiSpeedGreyscaleToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem normalSpeedInversionToolStripMenuItem;
+		private System.Windows.Forms.ToolStripMenuItem hiSpeedInversionToolStripMenuItem;
 	}
 }
