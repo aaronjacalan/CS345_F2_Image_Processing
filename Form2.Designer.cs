@@ -1,6 +1,6 @@
 ﻿namespace CS345___Image_Processing
 {
-	partial class Form1
+	partial class Form2
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -28,7 +28,7 @@
 		/// </summary>
 		private void InitializeComponent()
 		{
-			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form2));
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.btnClose = new System.Windows.Forms.Button();
 			this.btnMinimize = new System.Windows.Forms.Button();
@@ -41,15 +41,8 @@
 			this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-			this.switchToSubtractionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.switchToFiltersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
-			this.CopyButton = new System.Windows.Forms.Button();
-			this.colorInverseButton = new System.Windows.Forms.Button();
-			this.greyscaleButton = new System.Windows.Forms.Button();
-			this.histogramButton = new System.Windows.Forms.Button();
-			this.sepiaButton = new System.Windows.Forms.Button();
-			this.usePointersCheckBox = new System.Windows.Forms.CheckBox();
-			this.label1 = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.AppIcon)).BeginInit();
 			this.titleBarPanel.SuspendLayout();
@@ -64,7 +57,7 @@
 			this.pictureBox1.Location = new System.Drawing.Point(15, 72);
 			this.pictureBox1.Margin = new System.Windows.Forms.Padding(5);
 			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(525, 444);
+			this.pictureBox1.Size = new System.Drawing.Size(605, 445);
 			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBox1.TabIndex = 0;
 			this.pictureBox1.TabStop = false;
@@ -164,7 +157,7 @@
 			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem,
             this.saveToolStripMenuItem});
-			this.fileToolStripMenuItem.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
+			this.fileToolStripMenuItem.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.fileToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
 			this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
 			this.fileToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
@@ -175,7 +168,7 @@
 			this.openToolStripMenuItem.BackColor = System.Drawing.Color.Snow;
 			this.openToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
 			this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-			this.openToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+			this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.openToolStripMenuItem.Text = "Open";
 			this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
 			// 
@@ -184,7 +177,7 @@
 			this.saveToolStripMenuItem.BackColor = System.Drawing.Color.Snow;
 			this.saveToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
 			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-			this.saveToolStripMenuItem.Size = new System.Drawing.Size(102, 22);
+			this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
 			this.saveToolStripMenuItem.Text = "Save";
 			this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
 			// 
@@ -193,135 +186,39 @@
 			this.menuStrip1.BackColor = System.Drawing.Color.Snow;
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.switchToSubtractionToolStripMenuItem});
+            this.switchToFiltersToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 32);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(1250, 24);
 			this.menuStrip1.TabIndex = 3;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
-			// switchToSubtractionToolStripMenuItem
+			// switchToFiltersToolStripMenuItem
 			// 
-			this.switchToSubtractionToolStripMenuItem.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
-			this.switchToSubtractionToolStripMenuItem.Name = "switchToSubtractionToolStripMenuItem";
-			this.switchToSubtractionToolStripMenuItem.Size = new System.Drawing.Size(166, 20);
-			this.switchToSubtractionToolStripMenuItem.Text = "Switch to Subtraction";
-			this.switchToSubtractionToolStripMenuItem.Click += new System.EventHandler(this.switchToSubtractionToolStripMenuItem_Click);
+			this.switchToFiltersToolStripMenuItem.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
+			this.switchToFiltersToolStripMenuItem.Name = "switchToFiltersToolStripMenuItem";
+			this.switchToFiltersToolStripMenuItem.Size = new System.Drawing.Size(138, 20);
+			this.switchToFiltersToolStripMenuItem.Text = "Switch to Filters";
+			this.switchToFiltersToolStripMenuItem.Click += new System.EventHandler(this.switchToFiltersToolStripMenuItem_Click);
 			// 
 			// pictureBox2
 			// 
 			this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
 			this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pictureBox2.Location = new System.Drawing.Point(711, 72);
+			this.pictureBox2.Location = new System.Drawing.Point(630, 72);
 			this.pictureBox2.Margin = new System.Windows.Forms.Padding(5);
 			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(525, 444);
+			this.pictureBox2.Size = new System.Drawing.Size(606, 445);
 			this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBox2.TabIndex = 5;
 			this.pictureBox2.TabStop = false;
 			// 
-			// CopyButton
-			// 
-			this.CopyButton.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.CopyButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.CopyButton.Location = new System.Drawing.Point(550, 184);
-			this.CopyButton.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-			this.CopyButton.Name = "CopyButton";
-			this.CopyButton.Size = new System.Drawing.Size(151, 60);
-			this.CopyButton.TabIndex = 7;
-			this.CopyButton.Text = "Copy";
-			this.CopyButton.UseVisualStyleBackColor = false;
-			this.CopyButton.Click += new System.EventHandler(this.CopyButton_Click);
-			// 
-			// colorInverseButton
-			// 
-			this.colorInverseButton.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.colorInverseButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.colorInverseButton.Location = new System.Drawing.Point(550, 320);
-			this.colorInverseButton.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-			this.colorInverseButton.Name = "colorInverseButton";
-			this.colorInverseButton.Size = new System.Drawing.Size(151, 60);
-			this.colorInverseButton.TabIndex = 8;
-			this.colorInverseButton.Text = "Color Inverse";
-			this.colorInverseButton.UseVisualStyleBackColor = false;
-			this.colorInverseButton.Click += new System.EventHandler(this.colorInverseButton_Click);
-			// 
-			// greyscaleButton
-			// 
-			this.greyscaleButton.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.greyscaleButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.greyscaleButton.Location = new System.Drawing.Point(550, 252);
-			this.greyscaleButton.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-			this.greyscaleButton.Name = "greyscaleButton";
-			this.greyscaleButton.Size = new System.Drawing.Size(151, 60);
-			this.greyscaleButton.TabIndex = 9;
-			this.greyscaleButton.Text = "Greyscale";
-			this.greyscaleButton.UseVisualStyleBackColor = false;
-			this.greyscaleButton.Click += new System.EventHandler(this.greyscaleButton_Click);
-			// 
-			// histogramButton
-			// 
-			this.histogramButton.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.histogramButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.histogramButton.Location = new System.Drawing.Point(550, 388);
-			this.histogramButton.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-			this.histogramButton.Name = "histogramButton";
-			this.histogramButton.Size = new System.Drawing.Size(151, 60);
-			this.histogramButton.TabIndex = 10;
-			this.histogramButton.Text = "Histogram";
-			this.histogramButton.UseVisualStyleBackColor = false;
-			this.histogramButton.Click += new System.EventHandler(this.histogramButton_Click);
-			// 
-			// sepiaButton
-			// 
-			this.sepiaButton.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.sepiaButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.sepiaButton.Location = new System.Drawing.Point(550, 456);
-			this.sepiaButton.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-			this.sepiaButton.Name = "sepiaButton";
-			this.sepiaButton.Size = new System.Drawing.Size(151, 60);
-			this.sepiaButton.TabIndex = 11;
-			this.sepiaButton.Text = "Sepia";
-			this.sepiaButton.UseVisualStyleBackColor = false;
-			this.sepiaButton.Click += new System.EventHandler(this.sepiaButton_Click);
-			// 
-			// usePointersCheckBox
-			// 
-			this.usePointersCheckBox.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.usePointersCheckBox.ForeColor = System.Drawing.Color.White;
-			this.usePointersCheckBox.Location = new System.Drawing.Point(550, 133);
-			this.usePointersCheckBox.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
-			this.usePointersCheckBox.Name = "usePointersCheckBox";
-			this.usePointersCheckBox.Size = new System.Drawing.Size(151, 43);
-			this.usePointersCheckBox.TabIndex = 13;
-			this.usePointersCheckBox.Text = "USE POINTERS";
-			this.usePointersCheckBox.UseVisualStyleBackColor = true;
-			// 
-			// label1
-			// 
-			this.label1.Font = new System.Drawing.Font("Consolas", 21.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.label1.ForeColor = System.Drawing.Color.White;
-			this.label1.Location = new System.Drawing.Point(550, 72);
-			this.label1.Margin = new System.Windows.Forms.Padding(5, 0, 5, 0);
-			this.label1.Name = "label1";
-			this.label1.Size = new System.Drawing.Size(151, 45);
-			this.label1.TabIndex = 14;
-			this.label1.Text = "FILTERS";
-			this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-			// 
-			// Form1
+			// Form2
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(42)))));
 			this.ClientSize = new System.Drawing.Size(1250, 530);
-			this.Controls.Add(this.label1);
-			this.Controls.Add(this.usePointersCheckBox);
-			this.Controls.Add(this.sepiaButton);
-			this.Controls.Add(this.histogramButton);
-			this.Controls.Add(this.greyscaleButton);
-			this.Controls.Add(this.colorInverseButton);
-			this.Controls.Add(this.CopyButton);
 			this.Controls.Add(this.pictureBox2);
 			this.Controls.Add(this.menuStrip1);
 			this.Controls.Add(this.titleBarPanel);
@@ -329,7 +226,7 @@
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
 			this.MainMenuStrip = this.menuStrip1;
 			this.MaximizeBox = false;
-			this.Name = "Form1";
+			this.Name = "Form2";
 			this.Text = "Image Processing";
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.AppIcon)).EndInit();
@@ -358,14 +255,6 @@
 		private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
 		private System.Windows.Forms.MenuStrip menuStrip1;
 		private System.Windows.Forms.PictureBox pictureBox2;
-		private System.Windows.Forms.ToolStripMenuItem switchToSubtractionToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem highSpeedCopyToolStripMenuItem_Click;
-		private System.Windows.Forms.Button CopyButton;
-		private System.Windows.Forms.Button colorInverseButton;
-		private System.Windows.Forms.Button greyscaleButton;
-		private System.Windows.Forms.Button histogramButton;
-		private System.Windows.Forms.Button sepiaButton;
-		private System.Windows.Forms.CheckBox usePointersCheckBox;
-		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.ToolStripMenuItem switchToFiltersToolStripMenuItem;
 	}
 }
