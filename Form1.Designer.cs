@@ -223,19 +223,24 @@
 			// CopyButton
 			// 
 			this.CopyButton.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.CopyButton.FlatAppearance.BorderSize = 0;
+			this.CopyButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.CopyButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.CopyButton.ForeColor = System.Drawing.Color.Black;
 			this.CopyButton.Location = new System.Drawing.Point(550, 184);
-			this.CopyButton.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+			this.CopyButton.Margin = new System.Windows.Forms.Padding(0);
 			this.CopyButton.Name = "CopyButton";
 			this.CopyButton.Size = new System.Drawing.Size(151, 60);
 			this.CopyButton.TabIndex = 7;
 			this.CopyButton.Text = "Copy";
 			this.CopyButton.UseVisualStyleBackColor = false;
 			this.CopyButton.Click += new System.EventHandler(this.CopyButton_Click);
-			// 
+			//
 			// colorInverseButton
-			// 
+			//
 			this.colorInverseButton.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.colorInverseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.colorInverseButton.FlatAppearance.BorderSize = 0;
 			this.colorInverseButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.colorInverseButton.Location = new System.Drawing.Point(550, 320);
 			this.colorInverseButton.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -245,10 +250,12 @@
 			this.colorInverseButton.Text = "Color Inverse";
 			this.colorInverseButton.UseVisualStyleBackColor = false;
 			this.colorInverseButton.Click += new System.EventHandler(this.colorInverseButton_Click);
-			// 
+			//
 			// greyscaleButton
-			// 
+			//
 			this.greyscaleButton.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.greyscaleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.greyscaleButton.FlatAppearance.BorderSize = 0;
 			this.greyscaleButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.greyscaleButton.Location = new System.Drawing.Point(550, 252);
 			this.greyscaleButton.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -258,10 +265,12 @@
 			this.greyscaleButton.Text = "Greyscale";
 			this.greyscaleButton.UseVisualStyleBackColor = false;
 			this.greyscaleButton.Click += new System.EventHandler(this.greyscaleButton_Click);
-			// 
+			//
 			// histogramButton
-			// 
+			//
 			this.histogramButton.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.histogramButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.histogramButton.FlatAppearance.BorderSize = 0;
 			this.histogramButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.histogramButton.Location = new System.Drawing.Point(550, 388);
 			this.histogramButton.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -271,10 +280,12 @@
 			this.histogramButton.Text = "Histogram";
 			this.histogramButton.UseVisualStyleBackColor = false;
 			this.histogramButton.Click += new System.EventHandler(this.histogramButton_Click);
-			// 
+			//
 			// sepiaButton
-			// 
+			//
 			this.sepiaButton.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.sepiaButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.sepiaButton.FlatAppearance.BorderSize = 0;
 			this.sepiaButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.sepiaButton.Location = new System.Drawing.Point(550, 456);
 			this.sepiaButton.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -359,7 +370,6 @@
 		private System.Windows.Forms.MenuStrip menuStrip1;
 		private System.Windows.Forms.PictureBox pictureBox2;
 		private System.Windows.Forms.ToolStripMenuItem switchToSubtractionToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem highSpeedCopyToolStripMenuItem_Click;
 		private System.Windows.Forms.Button CopyButton;
 		private System.Windows.Forms.Button colorInverseButton;
 		private System.Windows.Forms.Button greyscaleButton;

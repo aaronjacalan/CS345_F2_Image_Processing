@@ -85,13 +85,22 @@ namespace CS345___Image_Processing
 
 
 		// FILE MENU
-		private void openToolStripMenuItem_Click(object sender, EventArgs e)
+		private void chooseBackgroundButton_Click(object sender, EventArgs e)
 		{
 			openFileDialog1.Title = "Open Image";
 			openFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif|All Files|*.*";
 			openFileDialog1.RestoreDirectory = true;
 
 			openFileDialog1.ShowDialog();
+		}
+
+		private void chooseImageButton_Click(object sender, EventArgs e)
+		{
+			openFileDialog2.Title = "Open Image";
+			openFileDialog2.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp;*.gif|All Files|*.*";
+			openFileDialog2.RestoreDirectory = true;
+
+			openFileDialog2.ShowDialog();
 		}
 
 		private void openFileDialog1_FileOk(object sender, CancelEventArgs e)
@@ -102,6 +111,21 @@ namespace CS345___Image_Processing
 				pictureBox1.Image = img;
 
 				originalImagePath = openFileDialog1.FileName;
+			}
+			catch (Exception ex)
+			{
+				MessageBox.Show("Error loading image: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+			}
+		}
+
+		private void openFileDialog2_FileOk(object sender, CancelEventArgs e)
+		{
+			try
+			{
+				Image img = Image.FromFile(openFileDialog2.FileName);
+				pictureBox2.Image = img;
+
+				originalImagePath = openFileDialog2.FileName;
 			}
 			catch (Exception ex)
 			{
@@ -155,6 +179,20 @@ namespace CS345___Image_Processing
 
 			mainForm.Show();
 			this.Hide();
+		}
+
+		private Color chromaKeyColor = Color.Green;
+
+		private void chooseChromaKeyColorButton_Click(object sender, EventArgs e)
+		{
+			colorDialog1.FullOpen = true;
+			colorDialog1.Color = chromaKeyColor;
+
+			if (colorDialog1.ShowDialog() == DialogResult.OK)
+			{
+				chromaKeyColor = colorDialog1.Color;
+				chooseChromaKeyColorButton.BackColor = chromaKeyColor;
+			}
 		}
 	}
 }

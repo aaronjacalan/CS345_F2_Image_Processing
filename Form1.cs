@@ -18,14 +18,25 @@ namespace CS345___Image_Processing
 		private Point lastCursor;
 		private Point lastForm;
 		private string originalImagePath = "";
+		private Button[] filterButtons;
 
 		public Form1()
 		{
 			InitializeComponent();
+
+			filterButtons = new Button[]
+			{
+				CopyButton,
+				colorInverseButton,
+				greyscaleButton,
+				histogramButton,
+				sepiaButton
+			};
+
+			InitializeButtonBackgrounds(filterButtons);
 		}
 
 
-		
 		// DRAG FORM
 		private void TitleBar_MouseDown(object sender, MouseEventArgs e)
 		{
@@ -103,6 +114,7 @@ namespace CS345___Image_Processing
 				pictureBox1.Image = img;
 
 				originalImagePath = openFileDialog1.FileName;
+				InitializeButtonBackgrounds(filterButtons);
 			}
 			catch (Exception ex)
 			{
@@ -158,6 +170,8 @@ namespace CS345___Image_Processing
 			this.Hide();
 		}
 
+
+		// IMAGE PROCESSING FILTERS
 		private void CopyButton_Click(object sender, EventArgs e)
 		{
 			if (pictureBox1.Image == null)
@@ -167,6 +181,8 @@ namespace CS345___Image_Processing
 			}
 
 			Bitmap copy;
+			Button clickedButton = sender as Button;
+			SetSelectedButton(clickedButton, filterButtons);
 
 			if (usePointersCheckBox.Checked)
 			{
@@ -220,6 +236,8 @@ namespace CS345___Image_Processing
 			}
 
 			Bitmap greyscale;
+			Button clickedButton = sender as Button;
+			SetSelectedButton(clickedButton, filterButtons);
 
 			if (usePointersCheckBox.Checked) {
 
@@ -286,6 +304,8 @@ namespace CS345___Image_Processing
 			}
 
 			Bitmap inverted;
+			Button clickedButton = sender as Button;
+			SetSelectedButton(clickedButton, filterButtons);
 
 			if (usePointersCheckBox.Checked)
 			{
@@ -360,6 +380,8 @@ namespace CS345___Image_Processing
 
 			Bitmap original = new Bitmap(pictureBox1.Image);
 			int[] counts = new int[256];
+			Button clickedButton = sender as Button;
+			SetSelectedButton(clickedButton, filterButtons);
 
 			if (usePointersCheckBox.Checked)
 			{
@@ -433,6 +455,8 @@ namespace CS345___Image_Processing
 			}
 
 			Bitmap sepia;
+			Button clickedButton = sender as Button;
+			SetSelectedButton(clickedButton, filterButtons);
 
 			if (usePointersCheckBox.Checked)
 			{
@@ -506,5 +530,28 @@ namespace CS345___Image_Processing
 			pictureBox2.Image = sepia;
 
 		}
+
+
+		// CUSTOM BUTTON DESIGNS
+		private void InitializeButtonBackgrounds(params Button[] buttons)
+		{
+			foreach (var btn in buttons)
+			{
+				btn.BackColor = SystemColors.ControlLight;
+				btn.Tag = btn.BackColor;
+			}
+		}
+
+		private void SetSelectedButton(Button selectedButton, params Button[] allButtons)
+		{
+			foreach (var btn in allButtons)
+			{
+				if (btn.Tag != null && btn != selectedButton)
+					btn.BackColor = (Color)btn.Tag;
+			}
+			selectedButton.BackColor = Color.FromArgb(0, 184, 255);
+		}
+
+
 	}
 }

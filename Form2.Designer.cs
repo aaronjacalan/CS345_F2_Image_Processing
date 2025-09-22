@@ -38,26 +38,35 @@
 			this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
 			this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
 			this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-			this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
 			this.switchToFiltersToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
+			this.pictureBox3 = new System.Windows.Forms.PictureBox();
+			this.chooseBackgroundButton = new System.Windows.Forms.Button();
+			this.chooseImageButton = new System.Windows.Forms.Button();
+			this.button3 = new System.Windows.Forms.Button();
+			this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
+			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+			this.button1 = new System.Windows.Forms.Button();
+			this.trackBar1 = new System.Windows.Forms.TrackBar();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.AppIcon)).BeginInit();
 			this.titleBarPanel.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// pictureBox1
 			// 
 			this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
 			this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pictureBox1.Location = new System.Drawing.Point(15, 72);
+			this.pictureBox1.Location = new System.Drawing.Point(14, 72);
 			this.pictureBox1.Margin = new System.Windows.Forms.Padding(5);
 			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(605, 445);
+			this.pictureBox1.Size = new System.Drawing.Size(400, 300);
 			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBox1.TabIndex = 0;
 			this.pictureBox1.TabStop = false;
@@ -155,7 +164,6 @@
 			// 
 			this.fileToolStripMenuItem.BackColor = System.Drawing.Color.Transparent;
 			this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.openToolStripMenuItem,
             this.saveToolStripMenuItem});
 			this.fileToolStripMenuItem.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.fileToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
@@ -163,22 +171,13 @@
 			this.fileToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
 			this.fileToolStripMenuItem.Text = "&File";
 			// 
-			// openToolStripMenuItem
-			// 
-			this.openToolStripMenuItem.BackColor = System.Drawing.Color.Snow;
-			this.openToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
-			this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-			this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.openToolStripMenuItem.Text = "Open";
-			this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
-			// 
 			// saveToolStripMenuItem
 			// 
 			this.saveToolStripMenuItem.BackColor = System.Drawing.Color.Snow;
 			this.saveToolStripMenuItem.ForeColor = System.Drawing.Color.Black;
 			this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-			this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-			this.saveToolStripMenuItem.Text = "Save";
+			this.saveToolStripMenuItem.Size = new System.Drawing.Size(151, 22);
+			this.saveToolStripMenuItem.Text = "Save Output";
 			this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
 			// 
 			// menuStrip1
@@ -205,13 +204,82 @@
 			// 
 			this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
 			this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pictureBox2.Location = new System.Drawing.Point(630, 72);
+			this.pictureBox2.Location = new System.Drawing.Point(424, 72);
 			this.pictureBox2.Margin = new System.Windows.Forms.Padding(5);
 			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(606, 445);
+			this.pictureBox2.Size = new System.Drawing.Size(400, 300);
 			this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBox2.TabIndex = 5;
 			this.pictureBox2.TabStop = false;
+			// 
+			// pictureBox3
+			// 
+			this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
+			this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+			this.pictureBox3.Location = new System.Drawing.Point(834, 72);
+			this.pictureBox3.Margin = new System.Windows.Forms.Padding(5);
+			this.pictureBox3.Name = "pictureBox3";
+			this.pictureBox3.Size = new System.Drawing.Size(400, 300);
+			this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+			this.pictureBox3.TabIndex = 6;
+			this.pictureBox3.TabStop = false;
+			// 
+			// chooseBackgroundButton
+			// 
+			this.chooseBackgroundButton.Location = new System.Drawing.Point(14, 382);
+			this.chooseBackgroundButton.Margin = new System.Windows.Forms.Padding(5);
+			this.chooseBackgroundButton.Name = "chooseBackgroundButton";
+			this.chooseBackgroundButton.Size = new System.Drawing.Size(400, 35);
+			this.chooseBackgroundButton.TabIndex = 7;
+			this.chooseBackgroundButton.Text = "Choose Image A (Background)";
+			this.chooseBackgroundButton.UseVisualStyleBackColor = true;
+			this.chooseBackgroundButton.Click += new System.EventHandler(this.chooseBackgroundButton_Click);
+			// 
+			// chooseImageButton
+			// 
+			this.chooseImageButton.Location = new System.Drawing.Point(424, 382);
+			this.chooseImageButton.Margin = new System.Windows.Forms.Padding(5);
+			this.chooseImageButton.Name = "chooseImageButton";
+			this.chooseImageButton.Size = new System.Drawing.Size(400, 35);
+			this.chooseImageButton.TabIndex = 8;
+			this.chooseImageButton.Text = "Choose Image B (Image)";
+			this.chooseImageButton.UseVisualStyleBackColor = true;
+			this.chooseImageButton.Click += new System.EventHandler(this.chooseImageButton_Click);
+			// 
+			// button3
+			// 
+			this.button3.Location = new System.Drawing.Point(834, 382);
+			this.button3.Margin = new System.Windows.Forms.Padding(5);
+			this.button3.Name = "button3";
+			this.button3.Size = new System.Drawing.Size(400, 35);
+			this.button3.TabIndex = 9;
+			this.button3.Text = "Subtract";
+			this.button3.UseVisualStyleBackColor = true;
+			// 
+			// openFileDialog2
+			// 
+			this.openFileDialog2.FileName = "openFileDialog2";
+			this.openFileDialog2.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog2_FileOk);
+			// 
+			// button1
+			// 
+			this.button1.Location = new System.Drawing.Point(14, 441);
+			this.button1.Margin = new System.Windows.Forms.Padding(5);
+			this.button1.Name = "button1";
+			this.button1.Size = new System.Drawing.Size(250, 75);
+			this.button1.TabIndex = 10;
+			this.button1.Text = "Choose Image A (Background)";
+			this.button1.UseVisualStyleBackColor = true;
+			// 
+			// trackBar1
+			// 
+			this.trackBar1.Location = new System.Drawing.Point(272, 471);
+			this.trackBar1.Maximum = 20;
+			this.trackBar1.Minimum = 1;
+			this.trackBar1.Name = "trackBar1";
+			this.trackBar1.Size = new System.Drawing.Size(552, 45);
+			this.trackBar1.TabIndex = 11;
+			this.trackBar1.Value = 1;
 			// 
 			// Form2
 			// 
@@ -219,6 +287,12 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(42)))));
 			this.ClientSize = new System.Drawing.Size(1250, 530);
+			this.Controls.Add(this.trackBar1);
+			this.Controls.Add(this.button1);
+			this.Controls.Add(this.button3);
+			this.Controls.Add(this.chooseImageButton);
+			this.Controls.Add(this.chooseBackgroundButton);
+			this.Controls.Add(this.pictureBox3);
 			this.Controls.Add(this.pictureBox2);
 			this.Controls.Add(this.menuStrip1);
 			this.Controls.Add(this.titleBarPanel);
@@ -235,6 +309,8 @@
 			this.menuStrip1.ResumeLayout(false);
 			this.menuStrip1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -251,10 +327,17 @@
 		private System.Windows.Forms.OpenFileDialog openFileDialog1;
 		private System.Windows.Forms.SaveFileDialog saveFileDialog1;
 		private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
-		private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
 		private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
 		private System.Windows.Forms.MenuStrip menuStrip1;
 		private System.Windows.Forms.PictureBox pictureBox2;
 		private System.Windows.Forms.ToolStripMenuItem switchToFiltersToolStripMenuItem;
+		private System.Windows.Forms.PictureBox pictureBox3;
+		private System.Windows.Forms.Button chooseBackgroundButton;
+		private System.Windows.Forms.Button chooseImageButton;
+		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.OpenFileDialog openFileDialog2;
+		private System.Windows.Forms.ColorDialog colorDialog1;
+		private System.Windows.Forms.Button button1;
+		private System.Windows.Forms.TrackBar trackBar1;
 	}
 }
