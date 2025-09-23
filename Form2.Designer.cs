@@ -45,13 +45,14 @@
 			this.pictureBox3 = new System.Windows.Forms.PictureBox();
 			this.chooseBackgroundButton = new System.Windows.Forms.Button();
 			this.chooseImageButton = new System.Windows.Forms.Button();
-			this.subtractButton = new System.Windows.Forms.Button();
+			this.subtractGrayscaleButton = new System.Windows.Forms.Button();
 			this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
 			this.chooseChromaKeyColorButton = new System.Windows.Forms.Button();
 			this.chromaKeyThreshold = new System.Windows.Forms.TrackBar();
 			this.label1 = new System.Windows.Forms.Label();
 			this.thresholdNumber = new System.Windows.Forms.Label();
+			this.subtractRGBButton = new System.Windows.Forms.Button();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.AppIcon)).BeginInit();
 			this.titleBarPanel.SuspendLayout();
@@ -258,21 +259,21 @@
 			this.chooseImageButton.UseVisualStyleBackColor = false;
 			this.chooseImageButton.Click += new System.EventHandler(this.chooseImageButton_Click);
 			// 
-			// subtractButton
+			// subtractGrayscaleButton
 			// 
-			this.subtractButton.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.subtractButton.FlatAppearance.BorderSize = 0;
-			this.subtractButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-			this.subtractButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-			this.subtractButton.ForeColor = System.Drawing.Color.Black;
-			this.subtractButton.Location = new System.Drawing.Point(834, 382);
-			this.subtractButton.Margin = new System.Windows.Forms.Padding(0);
-			this.subtractButton.Name = "subtractButton";
-			this.subtractButton.Size = new System.Drawing.Size(400, 35);
-			this.subtractButton.TabIndex = 9;
-			this.subtractButton.Text = "Subtract";
-			this.subtractButton.UseVisualStyleBackColor = false;
-			this.subtractButton.Click += new System.EventHandler(this.subtractButton_Click);
+			this.subtractGrayscaleButton.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.subtractGrayscaleButton.FlatAppearance.BorderSize = 0;
+			this.subtractGrayscaleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.subtractGrayscaleButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.subtractGrayscaleButton.ForeColor = System.Drawing.Color.Black;
+			this.subtractGrayscaleButton.Location = new System.Drawing.Point(834, 382);
+			this.subtractGrayscaleButton.Margin = new System.Windows.Forms.Padding(5);
+			this.subtractGrayscaleButton.Name = "subtractGrayscaleButton";
+			this.subtractGrayscaleButton.Size = new System.Drawing.Size(400, 62);
+			this.subtractGrayscaleButton.TabIndex = 9;
+			this.subtractGrayscaleButton.Text = "Subtract (Greyscale Method)";
+			this.subtractGrayscaleButton.UseVisualStyleBackColor = false;
+			this.subtractGrayscaleButton.Click += new System.EventHandler(this.subtractButton_Click);
 			// 
 			// openFileDialog2
 			// 
@@ -303,7 +304,7 @@
 			this.chromaKeyThreshold.Maximum = 30;
 			this.chromaKeyThreshold.Minimum = 5;
 			this.chromaKeyThreshold.Name = "chromaKeyThreshold";
-			this.chromaKeyThreshold.Size = new System.Drawing.Size(960, 45);
+			this.chromaKeyThreshold.Size = new System.Drawing.Size(550, 45);
 			this.chromaKeyThreshold.TabIndex = 11;
 			this.chromaKeyThreshold.Value = 5;
 			this.chromaKeyThreshold.Scroll += new System.EventHandler(this.chromaKeyThreshold_Scroll);
@@ -332,17 +333,34 @@
 			this.thresholdNumber.TabIndex = 13;
 			this.thresholdNumber.Text = "0";
 			// 
+			// subtractRGBButton
+			// 
+			this.subtractRGBButton.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.subtractRGBButton.FlatAppearance.BorderSize = 0;
+			this.subtractRGBButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.subtractRGBButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.subtractRGBButton.ForeColor = System.Drawing.Color.Black;
+			this.subtractRGBButton.Location = new System.Drawing.Point(834, 454);
+			this.subtractRGBButton.Margin = new System.Windows.Forms.Padding(5);
+			this.subtractRGBButton.Name = "subtractRGBButton";
+			this.subtractRGBButton.Size = new System.Drawing.Size(400, 62);
+			this.subtractRGBButton.TabIndex = 14;
+			this.subtractRGBButton.Text = "Subtract (RGB Method)";
+			this.subtractRGBButton.UseVisualStyleBackColor = false;
+			this.subtractRGBButton.Click += new System.EventHandler(this.subtractRGBButton_Click);
+			// 
 			// Form2
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(42)))));
 			this.ClientSize = new System.Drawing.Size(1250, 530);
+			this.Controls.Add(this.subtractRGBButton);
 			this.Controls.Add(this.thresholdNumber);
 			this.Controls.Add(this.label1);
 			this.Controls.Add(this.chromaKeyThreshold);
 			this.Controls.Add(this.chooseChromaKeyColorButton);
-			this.Controls.Add(this.subtractButton);
+			this.Controls.Add(this.subtractGrayscaleButton);
 			this.Controls.Add(this.chooseImageButton);
 			this.Controls.Add(this.chooseBackgroundButton);
 			this.Controls.Add(this.pictureBox3);
@@ -387,12 +405,13 @@
 		private System.Windows.Forms.PictureBox pictureBox3;
 		private System.Windows.Forms.Button chooseBackgroundButton;
 		private System.Windows.Forms.Button chooseImageButton;
-		private System.Windows.Forms.Button subtractButton;
+		private System.Windows.Forms.Button subtractGrayscaleButton;
 		private System.Windows.Forms.OpenFileDialog openFileDialog2;
 		private System.Windows.Forms.ColorDialog colorDialog1;
 		private System.Windows.Forms.Button chooseChromaKeyColorButton;
 		private System.Windows.Forms.TrackBar chromaKeyThreshold;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.Label thresholdNumber;
+		private System.Windows.Forms.Button subtractRGBButton;
 	}
 }

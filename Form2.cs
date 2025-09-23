@@ -23,11 +23,21 @@ namespace CS345___Image_Processing
 		private Color chromaKeyColor = Color.FromArgb(0, 255, 0);
 		private int defaultThreshold = 5;
 
+		private Button[] subtractButtons;
+
 		public Form2()
 		{
 			InitializeComponent();
 			thresholdNumber.Text = defaultThreshold.ToString();
 			updateChromaKeyColorDisplay(chromaKeyColor);
+
+			subtractButtons = new Button[]
+			{
+				subtractGrayscaleButton,
+				subtractRGBButton
+			};
+
+			InitializeButtonBackgrounds(subtractButtons);
 		}
 
 
@@ -212,6 +222,21 @@ namespace CS345___Image_Processing
 			chooseChromaKeyColorButton.Text = $"Chroma Key Color\n\nRGB({chromaKeyColor.R}, {chromaKeyColor.G}, {chromaKeyColor.B})";
 		}
 
+		// Difference between Grayscale Subtraction and RGB Subtraction:
+		//
+		// Grayscale Subtraction:
+		//    - Converts each pixel into a single brightness value (average of R, G, B).
+		//    - Subtraction is then done on these single values.
+		//    - Simpler and faster, but less accurate since color information is lost.
+		//    - Good for detecting light/dark differences regardless of color.
+		//
+		// RGB Subtraction:
+		//    - Subtracts each channel (R, G, and B) separately between pixels.
+		//    - Preserves full color information, giving more precise differences.
+		//    - More computationally expensive but better at detecting color-based changes.
+		//
+
+		// Same code sa gibutang sa Notebook pero gi optimize gamay
 		private void subtractButton_Click(object sender, EventArgs e)
 		{
 			if (imageB == null || imageA == null)
@@ -219,6 +244,9 @@ namespace CS345___Image_Processing
 				MessageBox.Show("Please load both background and foreground images first!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
 				return;
 			}
+
+			Button clickedButton = sender as Button;
+			SetSelectedButton(clickedButton, subtractButtons);
 
 			int targetWidth = 400;
 			int targetHeight = 300;
@@ -228,9 +256,9 @@ namespace CS345___Image_Processing
 			resultImage = new Bitmap(targetWidth, targetHeight);
 			int chromaGrey = (chromaKeyColor.R + chromaKeyColor.G + chromaKeyColor.B) / 3;
 
-			for (int y = 0; y < targetHeight; y++)
+			for (int x = 0; x < targetWidth; x++)
 			{
-				for (int x = 0; x < targetWidth; x++)
+				for (int y = 0; y < targetHeight; y++)
 				{
 					Color foregroundPixel = resizedImageA.GetPixel(x, y);
 					Color backgroundPixel = resizedImageB.GetPixel(x, y);
@@ -254,6 +282,103 @@ namespace CS345___Image_Processing
 			resizedImageA.Dispose();
 		}
 
+		// Uses direct pixel manipulation for better performance
+		private void subtractRGBButton_Click(object sender, EventArgs e)
+		{
+			if (imageB == null || imageA == null)
+			{
+				MessageBox.Show("Please load both background and foreground images first!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+				return;
+			}
+
+			Button clickedButton = sender as Button;
+			SetSelectedButton(clickedButton, subtractButtons);
+
+			int targetWidth = 400;
+			int targetHeight = 300;
+			Bitmap resizedImageB = new Bitmap(imageB, targetWidth, targetHeight);
+			Bitmap resizedImageA = new Bitmap(imageA, targetWidth, targetHeight);
+
+			resultImage = new Bitmap(targetWidth, targetHeight);
+
+			BitmapData foregroundData = resizedImageA.LockBits(new Rectangle(0, 0, targetWidth, targetHeight), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
+			BitmapData backgroundData = resizedImageB.LockBits(new Rectangle(0, 0, targetWidth, targetHeight), ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
+			BitmapData resultData = resultImage.LockBits(new Rectangle(0, 0, targetWidth, targetHeight), ImageLockMode.WriteOnly, PixelFormat.Format24bppRgb);
+
+			unsafe
+			{
+				byte* foregroundPtr = (byte*)foregroundData.Scan0;
+				byte* backgroundPtr = (byte*)backgroundData.Scan0;
+				byte* resultPtr = (byte*)resultData.Scan0;
+
+				int stride = foregroundData.Stride;
+
+				int chromaR = chromaKeyColor.R;
+				int chromaG = chromaKeyColor.G;
+				int chromaB = chromaKeyColor.B;
+
+				for (int y = 0; y < targetHeight; y++)
+				{
+					for (int x = 0; x < targetWidth; x++)
+					{
+						int offset = y * stride + x * 3;
+
+						int foregroundB = foregroundPtr[offset];
+						int foregroundG = foregroundPtr[offset + 1];
+						int foregroundR = foregroundPtr[offset + 2];
+
+						int rDiff = foregroundR - chromaR;
+						int gDiff = foregroundG - chromaG;
+						int bDiff = foregroundB - chromaB;
+
+						double colorDistance = Math.Sqrt(rDiff * rDiff + gDiff * gDiff + bDiff * bDiff);
+
+						if (colorDistance <= defaultThreshold * 8)
+						{
+							resultPtr[offset] = backgroundPtr[offset];			// Blue
+							resultPtr[offset + 1] = backgroundPtr[offset + 1];  // Green
+							resultPtr[offset + 2] = backgroundPtr[offset + 2];  // Red
+						}
+						else
+						{
+							resultPtr[offset] = foregroundPtr[offset];          // Blue
+							resultPtr[offset + 1] = foregroundPtr[offset + 1];  // Green
+							resultPtr[offset + 2] = foregroundPtr[offset + 2];  // Red
+						}
+					}
+				}
+			}
+
+			resizedImageA.UnlockBits(foregroundData);
+			resizedImageB.UnlockBits(backgroundData);
+			resultImage.UnlockBits(resultData);
+
+			pictureBox3.Image = resultImage;
+			resizedImageB.Dispose();
+			resizedImageA.Dispose();
+		}
+
+
+
+		// CUSTOM BUTTON DESIGNS
+		private void InitializeButtonBackgrounds(params Button[] buttons)
+		{
+			foreach (var btn in buttons)
+			{
+				btn.BackColor = SystemColors.ControlLight;
+				btn.Tag = btn.BackColor;
+			}
+		}
+
+		private void SetSelectedButton(Button selectedButton, params Button[] allButtons)
+		{
+			foreach (var btn in allButtons)
+			{
+				if (btn.Tag != null && btn != selectedButton)
+					btn.BackColor = (Color)btn.Tag;
+			}
+			selectedButton.BackColor = Color.FromArgb(0, 184, 255);
+		}
 
 	}
 }
