@@ -223,13 +223,13 @@ namespace CS345___Image_Processing
 		}
 
 		// Difference between Grayscale Subtraction and RGB Subtraction:
-		//
+
 		// Grayscale Subtraction:
 		//    - Converts each pixel into a single brightness value (average of R, G, B).
 		//    - Subtraction is then done on these single values.
 		//    - Simpler and faster, but less accurate since color information is lost.
 		//    - Good for detecting light/dark differences regardless of color.
-		//
+
 		// RGB Subtraction:
 		//    - Subtracts each channel (R, G, and B) separately between pixels.
 		//    - Preserves full color information, giving more precise differences.
