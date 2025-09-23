@@ -19,6 +19,7 @@ namespace CS345___Image_Processing
 		private Point lastForm;
 		private string originalImagePath = "";
 		private Button[] filterButtons;
+		Bitmap image;
 
 		public Form1()
 		{
@@ -110,8 +111,8 @@ namespace CS345___Image_Processing
 		{
 			try
 			{
-				Image img = Image.FromFile(openFileDialog1.FileName);
-				pictureBox1.Image = img;
+				image = new Bitmap(openFileDialog1.FileName);
+				pictureBox1.Image = image;
 
 				originalImagePath = openFileDialog1.FileName;
 				InitializeButtonBackgrounds(filterButtons);

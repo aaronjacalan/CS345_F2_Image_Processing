@@ -45,18 +45,20 @@
 			this.pictureBox3 = new System.Windows.Forms.PictureBox();
 			this.chooseBackgroundButton = new System.Windows.Forms.Button();
 			this.chooseImageButton = new System.Windows.Forms.Button();
-			this.button3 = new System.Windows.Forms.Button();
+			this.subtractButton = new System.Windows.Forms.Button();
 			this.openFileDialog2 = new System.Windows.Forms.OpenFileDialog();
 			this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-			this.button1 = new System.Windows.Forms.Button();
-			this.trackBar1 = new System.Windows.Forms.TrackBar();
+			this.chooseChromaKeyColorButton = new System.Windows.Forms.Button();
+			this.chromaKeyThreshold = new System.Windows.Forms.TrackBar();
+			this.label1 = new System.Windows.Forms.Label();
+			this.thresholdNumber = new System.Windows.Forms.Label();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.AppIcon)).BeginInit();
 			this.titleBarPanel.SuspendLayout();
 			this.menuStrip1.SuspendLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-			((System.ComponentModel.ISupportInitialize)(this.trackBar1)).BeginInit();
+			((System.ComponentModel.ISupportInitialize)(this.chromaKeyThreshold)).BeginInit();
 			this.SuspendLayout();
 			// 
 			// pictureBox1
@@ -226,60 +228,109 @@
 			// 
 			// chooseBackgroundButton
 			// 
+			this.chooseBackgroundButton.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.chooseBackgroundButton.FlatAppearance.BorderSize = 0;
+			this.chooseBackgroundButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.chooseBackgroundButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.chooseBackgroundButton.ForeColor = System.Drawing.Color.Black;
 			this.chooseBackgroundButton.Location = new System.Drawing.Point(14, 382);
-			this.chooseBackgroundButton.Margin = new System.Windows.Forms.Padding(5);
+			this.chooseBackgroundButton.Margin = new System.Windows.Forms.Padding(0);
 			this.chooseBackgroundButton.Name = "chooseBackgroundButton";
 			this.chooseBackgroundButton.Size = new System.Drawing.Size(400, 35);
 			this.chooseBackgroundButton.TabIndex = 7;
 			this.chooseBackgroundButton.Text = "Choose Image A (Background)";
-			this.chooseBackgroundButton.UseVisualStyleBackColor = true;
+			this.chooseBackgroundButton.UseVisualStyleBackColor = false;
 			this.chooseBackgroundButton.Click += new System.EventHandler(this.chooseBackgroundButton_Click);
 			// 
 			// chooseImageButton
 			// 
+			this.chooseImageButton.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.chooseImageButton.FlatAppearance.BorderSize = 0;
+			this.chooseImageButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.chooseImageButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.chooseImageButton.ForeColor = System.Drawing.Color.Black;
 			this.chooseImageButton.Location = new System.Drawing.Point(424, 382);
-			this.chooseImageButton.Margin = new System.Windows.Forms.Padding(5);
+			this.chooseImageButton.Margin = new System.Windows.Forms.Padding(0);
 			this.chooseImageButton.Name = "chooseImageButton";
 			this.chooseImageButton.Size = new System.Drawing.Size(400, 35);
 			this.chooseImageButton.TabIndex = 8;
 			this.chooseImageButton.Text = "Choose Image B (Image)";
-			this.chooseImageButton.UseVisualStyleBackColor = true;
+			this.chooseImageButton.UseVisualStyleBackColor = false;
 			this.chooseImageButton.Click += new System.EventHandler(this.chooseImageButton_Click);
 			// 
-			// button3
+			// subtractButton
 			// 
-			this.button3.Location = new System.Drawing.Point(834, 382);
-			this.button3.Margin = new System.Windows.Forms.Padding(5);
-			this.button3.Name = "button3";
-			this.button3.Size = new System.Drawing.Size(400, 35);
-			this.button3.TabIndex = 9;
-			this.button3.Text = "Subtract";
-			this.button3.UseVisualStyleBackColor = true;
+			this.subtractButton.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.subtractButton.FlatAppearance.BorderSize = 0;
+			this.subtractButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.subtractButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.subtractButton.ForeColor = System.Drawing.Color.Black;
+			this.subtractButton.Location = new System.Drawing.Point(834, 382);
+			this.subtractButton.Margin = new System.Windows.Forms.Padding(0);
+			this.subtractButton.Name = "subtractButton";
+			this.subtractButton.Size = new System.Drawing.Size(400, 35);
+			this.subtractButton.TabIndex = 9;
+			this.subtractButton.Text = "Subtract";
+			this.subtractButton.UseVisualStyleBackColor = false;
+			this.subtractButton.Click += new System.EventHandler(this.subtractButton_Click);
 			// 
 			// openFileDialog2
 			// 
 			this.openFileDialog2.FileName = "openFileDialog2";
 			this.openFileDialog2.FileOk += new System.ComponentModel.CancelEventHandler(this.openFileDialog2_FileOk);
 			// 
-			// button1
+			// chooseChromaKeyColorButton
 			// 
-			this.button1.Location = new System.Drawing.Point(14, 441);
-			this.button1.Margin = new System.Windows.Forms.Padding(5);
-			this.button1.Name = "button1";
-			this.button1.Size = new System.Drawing.Size(250, 75);
-			this.button1.TabIndex = 10;
-			this.button1.Text = "Choose Image A (Background)";
-			this.button1.UseVisualStyleBackColor = true;
+			this.chooseChromaKeyColorButton.BackColor = System.Drawing.SystemColors.ControlLight;
+			this.chooseChromaKeyColorButton.FlatAppearance.BorderSize = 0;
+			this.chooseChromaKeyColorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+			this.chooseChromaKeyColorButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.chooseChromaKeyColorButton.ForeColor = System.Drawing.Color.Black;
+			this.chooseChromaKeyColorButton.Location = new System.Drawing.Point(14, 441);
+			this.chooseChromaKeyColorButton.Margin = new System.Windows.Forms.Padding(0);
+			this.chooseChromaKeyColorButton.Name = "chooseChromaKeyColorButton";
+			this.chooseChromaKeyColorButton.Size = new System.Drawing.Size(250, 75);
+			this.chooseChromaKeyColorButton.TabIndex = 10;
+			this.chooseChromaKeyColorButton.Text = "Chroma Key Color";
+			this.chooseChromaKeyColorButton.UseVisualStyleBackColor = false;
+			this.chooseChromaKeyColorButton.Click += new System.EventHandler(this.chooseChromaKeyColorButton_Click);
 			// 
-			// trackBar1
+			// chromaKeyThreshold
 			// 
-			this.trackBar1.Location = new System.Drawing.Point(272, 471);
-			this.trackBar1.Maximum = 20;
-			this.trackBar1.Minimum = 1;
-			this.trackBar1.Name = "trackBar1";
-			this.trackBar1.Size = new System.Drawing.Size(552, 45);
-			this.trackBar1.TabIndex = 11;
-			this.trackBar1.Value = 1;
+			this.chromaKeyThreshold.LargeChange = 1;
+			this.chromaKeyThreshold.Location = new System.Drawing.Point(274, 471);
+			this.chromaKeyThreshold.Margin = new System.Windows.Forms.Padding(5);
+			this.chromaKeyThreshold.Maximum = 30;
+			this.chromaKeyThreshold.Minimum = 5;
+			this.chromaKeyThreshold.Name = "chromaKeyThreshold";
+			this.chromaKeyThreshold.Size = new System.Drawing.Size(960, 45);
+			this.chromaKeyThreshold.TabIndex = 11;
+			this.chromaKeyThreshold.Value = 5;
+			this.chromaKeyThreshold.Scroll += new System.EventHandler(this.chromaKeyThreshold_Scroll);
+			// 
+			// label1
+			// 
+			this.label1.AutoSize = true;
+			this.label1.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.label1.ForeColor = System.Drawing.Color.White;
+			this.label1.Location = new System.Drawing.Point(279, 441);
+			this.label1.Margin = new System.Windows.Forms.Padding(10, 0, 5, 0);
+			this.label1.Name = "label1";
+			this.label1.Size = new System.Drawing.Size(176, 18);
+			this.label1.TabIndex = 12;
+			this.label1.Text = "Chroma Key Threshold:";
+			// 
+			// thresholdNumber
+			// 
+			this.thresholdNumber.AutoSize = true;
+			this.thresholdNumber.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+			this.thresholdNumber.ForeColor = System.Drawing.Color.White;
+			this.thresholdNumber.Location = new System.Drawing.Point(465, 441);
+			this.thresholdNumber.Margin = new System.Windows.Forms.Padding(0);
+			this.thresholdNumber.Name = "thresholdNumber";
+			this.thresholdNumber.Size = new System.Drawing.Size(16, 18);
+			this.thresholdNumber.TabIndex = 13;
+			this.thresholdNumber.Text = "0";
 			// 
 			// Form2
 			// 
@@ -287,9 +338,11 @@
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(42)))));
 			this.ClientSize = new System.Drawing.Size(1250, 530);
-			this.Controls.Add(this.trackBar1);
-			this.Controls.Add(this.button1);
-			this.Controls.Add(this.button3);
+			this.Controls.Add(this.thresholdNumber);
+			this.Controls.Add(this.label1);
+			this.Controls.Add(this.chromaKeyThreshold);
+			this.Controls.Add(this.chooseChromaKeyColorButton);
+			this.Controls.Add(this.subtractButton);
 			this.Controls.Add(this.chooseImageButton);
 			this.Controls.Add(this.chooseBackgroundButton);
 			this.Controls.Add(this.pictureBox3);
@@ -310,7 +363,7 @@
 			this.menuStrip1.PerformLayout();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-			((System.ComponentModel.ISupportInitialize)(this.trackBar1)).EndInit();
+			((System.ComponentModel.ISupportInitialize)(this.chromaKeyThreshold)).EndInit();
 			this.ResumeLayout(false);
 			this.PerformLayout();
 
@@ -334,10 +387,12 @@
 		private System.Windows.Forms.PictureBox pictureBox3;
 		private System.Windows.Forms.Button chooseBackgroundButton;
 		private System.Windows.Forms.Button chooseImageButton;
-		private System.Windows.Forms.Button button3;
+		private System.Windows.Forms.Button subtractButton;
 		private System.Windows.Forms.OpenFileDialog openFileDialog2;
 		private System.Windows.Forms.ColorDialog colorDialog1;
-		private System.Windows.Forms.Button button1;
-		private System.Windows.Forms.TrackBar trackBar1;
+		private System.Windows.Forms.Button chooseChromaKeyColorButton;
+		private System.Windows.Forms.TrackBar chromaKeyThreshold;
+		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.Label thresholdNumber;
 	}
 }
