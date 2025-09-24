@@ -30,6 +30,7 @@ namespace CS345___Image_Processing
 		/// </summary>
 		private void InitializeComponent()
 		{
+			this.components = new System.ComponentModel.Container();
 			System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
 			this.pictureBox1 = new System.Windows.Forms.PictureBox();
 			this.btnClose = new System.Windows.Forms.Button();
@@ -53,6 +54,7 @@ namespace CS345___Image_Processing
 			this.sepiaButton = new System.Windows.Forms.Button();
 			this.usePointersCheckBox = new System.Windows.Forms.CheckBox();
 			this.label1 = new System.Windows.Forms.Label();
+			this.timer1 = new System.Windows.Forms.Timer(this.components);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
 			((System.ComponentModel.ISupportInitialize)(this.AppIcon)).BeginInit();
 			this.titleBarPanel.SuspendLayout();
@@ -332,6 +334,11 @@ namespace CS345___Image_Processing
 			this.label1.Text = "FILTERS";
 			this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
 			// 
+			// timer1
+			// 
+			this.timer1.Interval = 33;
+			this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+			// 
 			// Form1
 			// 
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -391,5 +398,6 @@ namespace CS345___Image_Processing
 		private System.Windows.Forms.CheckBox usePointersCheckBox;
 		private System.Windows.Forms.Label label1;
 		private System.Windows.Forms.ToolStripMenuItem useWebcamToolStripMenuItem;
+		private Timer timer1;
 	}
 }

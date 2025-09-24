@@ -36,6 +36,9 @@ namespace CS345___Image_Processing
 			InitializeButtonBackgrounds(filterButtons);
 			imageFilter = new ImageFilter();
 			webcamIntegrations = new WebcamIntegrations(pictureBox1, useWebcamToolStripMenuItem);
+
+			timer1.Interval = 33;
+			timer1.Enabled = false;
 		}
 
 
@@ -139,6 +142,7 @@ namespace CS345___Image_Processing
 			try
 			{
 				webcamIntegrations.StopWebcam();
+				timer1.Stop(); // Stop the timer when loading an image
 
 				image = new Bitmap(openFileDialog1.FileName);
 				pictureBox1.Image = image;
@@ -287,13 +291,24 @@ namespace CS345___Image_Processing
 
 			if (webcamIntegrations.IsWebcamMode)
 			{
+				timer1.Start();
 				pictureBox2.Image = null;
+			}
+			else
+			{
+				timer1.Stop();
 			}
 		}
 
 		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
 		{
+			timer1.Stop();
 			webcamIntegrations.CleanupResources();
+		}
+
+		private void timer1_Tick(object sender, EventArgs e)
+		{
+			webcamIntegrations.CaptureFrame();
 		}
 
 

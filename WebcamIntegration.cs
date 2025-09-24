@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 using WebCamLib;
 
@@ -73,6 +74,38 @@ namespace CS345___Image_Processing
 			if (isWebcamMode)
 			{
 				StopWebcam();
+			}
+		}
+
+		public void CaptureFrame()
+		{
+			if (currentWebcamDevice == null || !isWebcamMode)
+				return;
+
+			try
+			{
+				currentWebcamDevice.Sendmessage();
+
+				if (Clipboard.ContainsImage())
+				{
+					Image capturedImage = Clipboard.GetImage();
+
+					if (capturedImage != null)
+					{
+						if (displayTarget.Image != null)
+						{
+							Image oldImage = displayTarget.Image;
+							displayTarget.Image = null;
+							oldImage.Dispose();
+						}
+
+						displayTarget.Image = capturedImage;
+					}
+				}
+			}
+			catch (Exception ex)
+			{
+				Console.WriteLine("Error capturing frame: " + ex.Message);
 			}
 		}
 	}
