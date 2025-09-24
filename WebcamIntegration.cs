@@ -35,7 +35,7 @@ namespace CS345___Image_Processing
 
 		public void InitializeWebcam()
 		{
-			MessageBox.Show("Webcam is still WIP, Somehow di mogana, will fix ASAP tho", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+			MessageBox.Show("Buggy ang webcam if using internal webcam. Try using external webcam or use ManyCam", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
 			try
 			{
