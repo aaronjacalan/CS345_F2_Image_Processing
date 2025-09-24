@@ -2,6 +2,8 @@
 
 A comprehensive **C# image processing application** featuring various image manipulation and analysis tools.
 
+## Latest Release: v1.1.1
+
 ## Features
 - **Copy** - Duplicate images with full fidelity  
 - **Grayscale** - Convert color images to grayscale using luminance algorithms  
@@ -9,7 +11,7 @@ A comprehensive **C# image processing application** featuring various image mani
 - **Sepia** - Apply vintage sepia tone filtering  
 - **Histogram** - Generate and display image histogram analysis  
 - **Subtract (Chroma Key)** - Remove background colors using chroma key technology  
-- **Webcam (Coming Soon)** - Capture and process live images directly from your webcam  
+- **Webcam** - Capture and process live images directly from your webcam  
 
 ## Usage
 - **Load Image:** Open an image file using the File menu  
@@ -17,4 +19,4 @@ A comprehensive **C# image processing application** featuring various image mani
   - Use the toolbar buttons for quick access to common operations  
   - Access advanced features through the menu system  
 - **View Results:** Preview processed images in real-time  
-- **Save Output:** Export processed images in various formats  
+- **Save Output:** Export processed images in various formats
