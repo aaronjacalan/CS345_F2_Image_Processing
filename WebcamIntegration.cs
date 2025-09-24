@@ -35,6 +35,8 @@ namespace CS345___Image_Processing
 
 		public void InitializeWebcam()
 		{
+			MessageBox.Show("Webcam is still WIP, Somehow di mogana, will fix ASAP tho", "Information", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
 			try
 			{
 				webcamDevices = DeviceManager.GetAllDevices();
