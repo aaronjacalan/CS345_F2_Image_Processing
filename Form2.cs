@@ -19,7 +19,7 @@ namespace CS345___Image_Processing
 		private bool isDragging = false;
 		private Point lastCursor;
 		private Point lastForm;
-		Bitmap imageB, imageA, chromaBackground, resultImage;
+		Bitmap imageB, imageA, resultImage;
 		private Color chromaKeyColor = Color.FromArgb(0, 255, 0);
 		private int defaultThreshold = 5;
 

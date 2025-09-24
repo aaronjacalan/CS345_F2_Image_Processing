@@ -1,4 +1,6 @@
-﻿namespace CS345___Image_Processing
+﻿using System.Windows.Forms;
+
+namespace CS345___Image_Processing
 {
 	partial class Form1
 	{
@@ -41,6 +43,7 @@
 			this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+			this.useWebcamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.switchToSubtractionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
 			this.CopyButton = new System.Windows.Forms.Button();
@@ -193,12 +196,21 @@
 			this.menuStrip1.BackColor = System.Drawing.Color.Snow;
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
+            this.useWebcamToolStripMenuItem,
             this.switchToSubtractionToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 32);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(1250, 24);
 			this.menuStrip1.TabIndex = 3;
 			this.menuStrip1.Text = "menuStrip1";
+			// 
+			// useWebcamToolStripMenuItem
+			// 
+			this.useWebcamToolStripMenuItem.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
+			this.useWebcamToolStripMenuItem.Name = "useWebcamToolStripMenuItem";
+			this.useWebcamToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
+			this.useWebcamToolStripMenuItem.Text = "Use Webcam";
+			this.useWebcamToolStripMenuItem.Click += new System.EventHandler(this.useWebcamToolStripMenuItem_Click);
 			// 
 			// switchToSubtractionToolStripMenuItem
 			// 
@@ -235,12 +247,12 @@
 			this.CopyButton.Text = "Copy";
 			this.CopyButton.UseVisualStyleBackColor = false;
 			this.CopyButton.Click += new System.EventHandler(this.CopyButton_Click);
-			//
+			// 
 			// colorInverseButton
-			//
+			// 
 			this.colorInverseButton.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.colorInverseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.colorInverseButton.FlatAppearance.BorderSize = 0;
+			this.colorInverseButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.colorInverseButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.colorInverseButton.Location = new System.Drawing.Point(550, 320);
 			this.colorInverseButton.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -250,12 +262,12 @@
 			this.colorInverseButton.Text = "Color Inverse";
 			this.colorInverseButton.UseVisualStyleBackColor = false;
 			this.colorInverseButton.Click += new System.EventHandler(this.colorInverseButton_Click);
-			//
+			// 
 			// greyscaleButton
-			//
+			// 
 			this.greyscaleButton.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.greyscaleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.greyscaleButton.FlatAppearance.BorderSize = 0;
+			this.greyscaleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.greyscaleButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.greyscaleButton.Location = new System.Drawing.Point(550, 252);
 			this.greyscaleButton.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -265,12 +277,12 @@
 			this.greyscaleButton.Text = "Greyscale";
 			this.greyscaleButton.UseVisualStyleBackColor = false;
 			this.greyscaleButton.Click += new System.EventHandler(this.greyscaleButton_Click);
-			//
+			// 
 			// histogramButton
-			//
+			// 
 			this.histogramButton.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.histogramButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.histogramButton.FlatAppearance.BorderSize = 0;
+			this.histogramButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.histogramButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.histogramButton.Location = new System.Drawing.Point(550, 388);
 			this.histogramButton.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -280,12 +292,12 @@
 			this.histogramButton.Text = "Histogram";
 			this.histogramButton.UseVisualStyleBackColor = false;
 			this.histogramButton.Click += new System.EventHandler(this.histogramButton_Click);
-			//
+			// 
 			// sepiaButton
-			//
+			// 
 			this.sepiaButton.BackColor = System.Drawing.SystemColors.ControlLight;
-			this.sepiaButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.sepiaButton.FlatAppearance.BorderSize = 0;
+			this.sepiaButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.sepiaButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.sepiaButton.Location = new System.Drawing.Point(550, 456);
 			this.sepiaButton.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
@@ -342,6 +354,7 @@
 			this.MaximizeBox = false;
 			this.Name = "Form1";
 			this.Text = "Image Processing";
+			this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
 			((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
 			((System.ComponentModel.ISupportInitialize)(this.AppIcon)).EndInit();
 			this.titleBarPanel.ResumeLayout(false);
@@ -377,5 +390,6 @@
 		private System.Windows.Forms.Button sepiaButton;
 		private System.Windows.Forms.CheckBox usePointersCheckBox;
 		private System.Windows.Forms.Label label1;
+		private System.Windows.Forms.ToolStripMenuItem useWebcamToolStripMenuItem;
 	}
 }

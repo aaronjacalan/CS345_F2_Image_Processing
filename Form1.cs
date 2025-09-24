@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
 using System.Drawing;
 using System.Drawing.Imaging;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using WebCamLib;
 
 namespace CS345___Image_Processing
 {
@@ -20,6 +16,9 @@ namespace CS345___Image_Processing
 		private string originalImagePath = "";
 		private Button[] filterButtons;
 		Bitmap image;
+		private ImageFilter imageFilter;
+
+		private WebcamIntegrations webcamIntegrations;
 
 		public Form1()
 		{
@@ -35,7 +34,10 @@ namespace CS345___Image_Processing
 			};
 
 			InitializeButtonBackgrounds(filterButtons);
+			imageFilter = new ImageFilter();
+			webcamIntegrations = new WebcamIntegrations(pictureBox1, useWebcamToolStripMenuItem);
 		}
+
 
 
 		// DRAG FORM
@@ -85,6 +87,31 @@ namespace CS345___Image_Processing
 			}
 		}
 
+
+
+		// CUSTOM BUTTON DESIGNS
+		private void InitializeButtonBackgrounds(params Button[] buttons)
+		{
+			foreach (var btn in buttons)
+			{
+				btn.BackColor = SystemColors.ControlLight;
+				btn.Tag = btn.BackColor;
+			}
+		}
+
+		private void SetSelectedButton(Button selectedButton, params Button[] allButtons)
+		{
+			foreach (var btn in allButtons)
+			{
+				if (btn.Tag != null && btn != selectedButton)
+					btn.BackColor = (Color)btn.Tag;
+			}
+			selectedButton.BackColor = Color.FromArgb(0, 184, 255);
+		}
+
+
+
+		// WINDOW CONTROL BUTTONS
 		private void btnClose_Click(object sender, EventArgs e)
 		{
 			Application.Exit();
@@ -111,6 +138,8 @@ namespace CS345___Image_Processing
 		{
 			try
 			{
+				webcamIntegrations.StopWebcam();
+
 				image = new Bitmap(openFileDialog1.FileName);
 				pictureBox1.Image = image;
 
@@ -172,6 +201,7 @@ namespace CS345___Image_Processing
 		}
 
 
+
 		// IMAGE PROCESSING FILTERS
 		private void CopyButton_Click(object sender, EventArgs e)
 		{
@@ -181,51 +211,11 @@ namespace CS345___Image_Processing
 				return;
 			}
 
-			Bitmap copy;
 			Button clickedButton = sender as Button;
 			SetSelectedButton(clickedButton, filterButtons);
 
-			if (usePointersCheckBox.Checked)
-			{
-				Bitmap original = new Bitmap(pictureBox1.Image);
-				copy = new Bitmap(original.Width, original.Height, original.PixelFormat);
-
-				var rect = new Rectangle(0, 0, original.Width, original.Height);
-				var originalData = original.LockBits(rect, ImageLockMode.ReadOnly, original.PixelFormat);
-				var copyData = copy.LockBits(rect, ImageLockMode.WriteOnly, copy.PixelFormat);
-
-				unsafe
-				{
-					byte* srcPtr = (byte*)originalData.Scan0;
-					byte* dstPtr = (byte*)copyData.Scan0;
-					int totalBytes = Math.Abs(originalData.Stride) * original.Height;
-
-					for (int i = 0; i < totalBytes; i++)
-					{
-						dstPtr[i] = srcPtr[i];
-					}
-				}
-
-				original.UnlockBits(originalData);
-				copy.UnlockBits(copyData);
-			}
-			else
-			{
-				Bitmap original = new Bitmap(pictureBox1.Image);
-				copy = new Bitmap(original.Width, original.Height);
-
-				for (int x = 0; x < original.Width; x++)
-				{
-					for (int y = 0; y < original.Height; y++)
-					{
-						Color pixelColor = original.GetPixel(x, y);
-						copy.SetPixel(x, y, pixelColor);
-					}
-				}
-			}
-
-			pictureBox2.Image = copy;
-
+			Bitmap original = new Bitmap(pictureBox1.Image);
+			pictureBox2.Image = imageFilter.Copy(original, usePointersCheckBox.Checked);
 		}
 
 		private void greyscaleButton_Click(object sender, EventArgs e)
@@ -236,64 +226,11 @@ namespace CS345___Image_Processing
 				return;
 			}
 
-			Bitmap greyscale;
 			Button clickedButton = sender as Button;
 			SetSelectedButton(clickedButton, filterButtons);
 
-			if (usePointersCheckBox.Checked) {
-
-				Bitmap original = new Bitmap(pictureBox1.Image);
-				greyscale = new Bitmap(original.Width, original.Height, PixelFormat.Format24bppRgb);
-
-				var rect = new Rectangle(0, 0, original.Width, original.Height);
-				var originalData = original.LockBits(rect, ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
-				var grayscaleData = greyscale.LockBits(rect, ImageLockMode.WriteOnly, PixelFormat.Format24bppRgb);
-
-				unsafe
-				{
-					byte* srcPtr = (byte*)originalData.Scan0;
-					byte* dstPtr = (byte*)grayscaleData.Scan0;
-
-					int bytesPerPixel = 3;
-					int totalPixels = original.Width * original.Height;
-
-					for (int i = 0; i < totalPixels; i++)
-					{
-						int pixelOffset = i * bytesPerPixel;
-
-						byte blue = srcPtr[pixelOffset];
-						byte green = srcPtr[pixelOffset + 1];
-						byte red = srcPtr[pixelOffset + 2];
-
-						byte grayValue = (byte)((red + green + blue) / 3);
-
-						dstPtr[pixelOffset] = grayValue;
-						dstPtr[pixelOffset + 1] = grayValue;
-						dstPtr[pixelOffset + 2] = grayValue;
-					}
-				}
-
-				original.UnlockBits(originalData);
-				greyscale.UnlockBits(grayscaleData);
-			}
-			else
-			{
-				Bitmap original = new Bitmap(pictureBox1.Image);
-				greyscale = new Bitmap(original.Width, original.Height);
-
-				for (int x = 0; x < original.Width; x++)
-				{
-					for (int y = 0; y < original.Height; y++)
-					{
-						Color pixelColor = original.GetPixel(x, y);
-						int greyValue = (pixelColor.R + pixelColor.G + pixelColor.B) / 3;
-						Color greyColor = Color.FromArgb(greyValue, greyValue, greyValue);
-						greyscale.SetPixel(x, y, greyColor);
-					}
-				}
-			}
-
-			pictureBox2.Image = greyscale;
+			Bitmap original = new Bitmap(pictureBox1.Image);
+			pictureBox2.Image = imageFilter.Grayscale(original, usePointersCheckBox.Checked);
 		}
 
 		private void colorInverseButton_Click(object sender, EventArgs e)
@@ -304,71 +241,11 @@ namespace CS345___Image_Processing
 				return;
 			}
 
-			Bitmap inverted;
 			Button clickedButton = sender as Button;
 			SetSelectedButton(clickedButton, filterButtons);
 
-			if (usePointersCheckBox.Checked)
-			{
-				Bitmap original = new Bitmap(pictureBox1.Image);
-				inverted = new Bitmap(original.Width, original.Height, PixelFormat.Format24bppRgb);
-
-				var rect = new Rectangle(0, 0, original.Width, original.Height);
-				var originalData = original.LockBits(rect, ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
-				var inverseData = inverted.LockBits(rect, ImageLockMode.WriteOnly, PixelFormat.Format24bppRgb);
-
-				unsafe
-				{
-					byte* srcPtr = (byte*)originalData.Scan0;
-					byte* dstPtr = (byte*)inverseData.Scan0;
-
-					int bytesPerPixel = 3;
-					int totalPixels = original.Width * original.Height;
-
-					for (int i = 0; i < totalPixels; i++)
-					{
-						int pixelOffset = i * bytesPerPixel;
-
-						byte blue = srcPtr[pixelOffset];
-						byte green = srcPtr[pixelOffset + 1];
-						byte red = srcPtr[pixelOffset + 2];
-
-						byte inverseBlue = (byte)(255 - blue);
-						byte inverseGreen = (byte)(255 - green);
-						byte inverseRed = (byte)(255 - red);
-
-						dstPtr[pixelOffset] = inverseBlue;
-						dstPtr[pixelOffset + 1] = inverseGreen;
-						dstPtr[pixelOffset + 2] = inverseRed;
-					}
-				}
-
-				original.UnlockBits(originalData);
-				inverted.UnlockBits(inverseData);
-			}
-			else
-			{
-
-				Bitmap original = new Bitmap(pictureBox1.Image);
-				inverted = new Bitmap(original.Width, original.Height);
-
-				for (int x = 0; x < original.Width; x++)
-				{
-					for (int y = 0; y < original.Height; y++)
-					{
-						Color pixelColor = original.GetPixel(x, y);
-
-						int invertedRed = 255 - pixelColor.R;
-						int invertedGreen = 255 - pixelColor.G;
-						int invertedBlue = 255 - pixelColor.B;
-
-						Color invertedColor = Color.FromArgb(invertedRed, invertedGreen, invertedBlue);
-						inverted.SetPixel(x, y, invertedColor);
-					}
-				}
-			}
-
-			pictureBox2.Image = inverted;
+			Bitmap original = new Bitmap(pictureBox1.Image);
+			pictureBox2.Image = imageFilter.ColorInverse(original, usePointersCheckBox.Checked);
 		}
 
 		private void histogramButton_Click(object sender, EventArgs e)
@@ -379,72 +256,11 @@ namespace CS345___Image_Processing
 				return;
 			}
 
-			Bitmap original = new Bitmap(pictureBox1.Image);
-			int[] counts = new int[256];
 			Button clickedButton = sender as Button;
 			SetSelectedButton(clickedButton, filterButtons);
 
-			if (usePointersCheckBox.Checked)
-			{
-				var rect = new Rectangle(0, 0, original.Width, original.Height);
-				var data = original.LockBits(rect, ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
-
-				unsafe
-				{
-					byte* ptr = (byte*)data.Scan0;
-					int stride = data.Stride;
-					int width = original.Width;
-					int height = original.Height;
-
-					for (int y = 0; y < height; y++)
-					{
-						byte* row = ptr + y * stride;
-						for (int x = 0; x < width; x++)
-						{
-							int index = x * 3;
-							byte b = row[index];
-							byte g = row[index + 1];
-							byte r = row[index + 2];
-
-							int gray = (r + g + b) / 3;
-							counts[gray]++;
-						}
-					}
-				}
-
-				original.UnlockBits(data);
-			}
-			else
-			{
-				for (int x = 0; x < original.Width; x++)
-				{
-					for (int y = 0; y < original.Height; y++)
-					{
-						Color pixel = original.GetPixel(x, y);
-						int gray = (pixel.R + pixel.G + pixel.B) / 3;
-						counts[gray]++;
-					}
-				}
-			}
-
-			Bitmap histogram = new Bitmap(256, 100);
-
-			int max = 0;
-			for (int i = 0; i < 256; i++) if (counts[i] > max) max = counts[i];
-
-			for (int x = 0; x < 256; x++)
-			{
-				int height = max > 0 ? (counts[x] * 90) / max : 0;
-				for (int y = 0; y < 100; y++)
-				{
-					if (y >= (99 - height))
-						histogram.SetPixel(x, y, Color.Black);
-					else
-						histogram.SetPixel(x, y, Color.White);
-				}
-			}
-
-			pictureBox2.Image = histogram;
+			Bitmap original = new Bitmap(pictureBox1.Image);
+			pictureBox2.Image = imageFilter.Histogram(original, usePointersCheckBox.Checked);
 		}
 
 		private void sepiaButton_Click(object sender, EventArgs e)
@@ -455,102 +271,29 @@ namespace CS345___Image_Processing
 				return;
 			}
 
-			Bitmap sepia;
 			Button clickedButton = sender as Button;
 			SetSelectedButton(clickedButton, filterButtons);
 
-			if (usePointersCheckBox.Checked)
-			{
-				Bitmap original = new Bitmap(pictureBox1.Image);
-				sepia = new Bitmap(original.Width, original.Height, PixelFormat.Format24bppRgb);
-
-				Rectangle rect = new Rectangle(0, 0, original.Width, original.Height);
-				BitmapData originalData = original.LockBits(rect, ImageLockMode.ReadOnly, PixelFormat.Format24bppRgb);
-				BitmapData sepiaData = sepia.LockBits(rect, ImageLockMode.WriteOnly, PixelFormat.Format24bppRgb);
-
-				unsafe
-				{
-					byte* srcPtr = (byte*)originalData.Scan0;
-					byte* dstPtr = (byte*)sepiaData.Scan0;
-					int bytesPerPixel = 3;
-					int stride = originalData.Stride;
-
-					for (int y = 0; y < original.Height; y++)
-					{
-						for (int x = 0; x < original.Width; x++)
-						{
-							int pixelOffset = y * stride + x * bytesPerPixel;
-
-							byte b = srcPtr[pixelOffset];
-							byte g = srcPtr[pixelOffset + 1];
-							byte r = srcPtr[pixelOffset + 2];
-
-							int sepiaRed = (int)((r * 0.45) + (g * 0.85) + (b * 0.20));
-							int sepiaGreen = (int)((r * 0.40) + (g * 0.75) + (b * 0.15));
-							int sepiaBlue = (int)((r * 0.25) + (g * 0.55) + (b * 0.10));
-
-							if (sepiaRed > 255) sepiaRed = 255;
-							if (sepiaGreen > 255) sepiaGreen = 255;
-							if (sepiaBlue > 255) sepiaBlue = 255;
-
-							dstPtr[pixelOffset] = (byte)sepiaBlue;
-							dstPtr[pixelOffset + 1] = (byte)sepiaGreen;
-							dstPtr[pixelOffset + 2] = (byte)sepiaRed;
-						}
-					}
-				}
-
-				original.UnlockBits(originalData);
-				sepia.UnlockBits(sepiaData);
-			} 
-			else
-			{
-				Bitmap original = new Bitmap(pictureBox1.Image);
-				sepia = new Bitmap(original.Width, original.Height);
-
-				for (int x = 0; x < original.Width; x++)
-				{
-					for (int y = 0; y < original.Height; y++)
-					{
-						Color pixelColor = original.GetPixel(x, y);
-
-						int sepiaRed = (int)((pixelColor.R * 0.45) + (pixelColor.G * 0.85) + (pixelColor.B * 0.20));
-						int sepiaGreen = (int)((pixelColor.R * 0.40) + (pixelColor.G * 0.75) + (pixelColor.B * 0.15));
-						int sepiaBlue = (int)((pixelColor.R * 0.25) + (pixelColor.G * 0.55) + (pixelColor.B * 0.10));
-
-						if (sepiaRed > 255) sepiaRed = 255;
-						if (sepiaGreen > 255) sepiaGreen = 255;
-						if (sepiaBlue > 255) sepiaBlue = 255;
-
-						Color sepiaColor = Color.FromArgb(sepiaRed, sepiaGreen, sepiaBlue);
-						sepia.SetPixel(x, y, sepiaColor);
-					}
-				}
-			}
-
-			pictureBox2.Image = sepia;
-
+			Bitmap original = new Bitmap(pictureBox1.Image);
+			pictureBox2.Image = imageFilter.Sepia(original, usePointersCheckBox.Checked);
 		}
 
 
-		// CUSTOM BUTTON DESIGNS
-		private void InitializeButtonBackgrounds(params Button[] buttons)
+
+		// WEBCAM INTEGRATION
+		private void useWebcamToolStripMenuItem_Click(object sender, EventArgs e)
 		{
-			foreach (var btn in buttons)
+			webcamIntegrations.ToggleWebcam();
+
+			if (webcamIntegrations.IsWebcamMode)
 			{
-				btn.BackColor = SystemColors.ControlLight;
-				btn.Tag = btn.BackColor;
+				pictureBox2.Image = null;
 			}
 		}
 
-		private void SetSelectedButton(Button selectedButton, params Button[] allButtons)
+		private void Form1_FormClosing(object sender, FormClosingEventArgs e)
 		{
-			foreach (var btn in allButtons)
-			{
-				if (btn.Tag != null && btn != selectedButton)
-					btn.BackColor = (Color)btn.Tag;
-			}
-			selectedButton.BackColor = Color.FromArgb(0, 184, 255);
+			webcamIntegrations.CleanupResources();
 		}
 
 
