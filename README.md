@@ -10,25 +10,6 @@ A comprehensive **C# image processing application** featuring various image mani
 * **Histogram** - Generate and display image histogram analysis
 * **Subtract (Chroma Key)** - Remove background colors using chroma key technology
 
-## Getting Started
-### Prerequisites
-
-* .NET Framework or .NET Core
-* Visual Studio or compatible C# IDE
-* Windows operating system (recommended)
-
-### Installation
-
-```bash
-git clone https://github.com/aaronjacalan/CS345_F2_Jacalan_Image_Processing.git
-```
-
-1. Open the solution file in Visual Studio
-2. Build the project (`Ctrl + Shift + B`)
-3. Run the application (`F5`)
-
-You can also download the executable from the releases section.
-
 ## Usage
 * **Load Image:** Open an image file using the File menu or drag and drop
 * **Apply Effects:**
