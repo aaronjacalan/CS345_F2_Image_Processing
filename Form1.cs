@@ -291,11 +291,13 @@ namespace CS345___Image_Processing
 
 			if (webcamIntegrations.IsWebcamMode)
 			{
+				usePointersCheckBox.Checked = true;
 				timer1.Start();
 				pictureBox2.Image = null;
 			}
 			else
 			{
+				usePointersCheckBox.Checked = false;
 				timer1.Stop();
 			}
 		}

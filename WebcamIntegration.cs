@@ -110,5 +110,6 @@ namespace CS345___Image_Processing
 				Console.WriteLine("Error capturing frame: " + ex.Message);
 			}
 		}
+
 	}
 }
