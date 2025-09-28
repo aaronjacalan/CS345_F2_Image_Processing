@@ -1,15 +1,13 @@
-﻿# 📷 Image Processing Application
+﻿# Image Processing Application
 
 A comprehensive **C# desktop application** for performing image manipulation and analysis.  
 This tool offers a wide range of filters, transformations, and real-time webcam processing features.
 
----
 
 ## 🚀 Latest Release
-**v1.1.1** – Includes webcam support for live image capture and processing.  
+**v1.2.0** – Added new Filters using a Convolution Matrix based Calculations.
 > ⚠️ Note: Integrated webcams may not work on some systems. Use an external webcam or a virtual device (e.g., ManyCam).  
 
----
 
 ## ✨ Features
 
@@ -22,8 +20,6 @@ This tool offers a wide range of filters, transformations, and real-time webcam 
 - **Subtract (Chroma Key)** – Remove background colors using chroma key technology  
 - **Webcam** – Capture and process live images from your webcam  
 
----
-
 ### 🎨 Convolution Matrix Filters
 - **Sharpen** – Enhance image details  
 - **Blur** – Soften images with standard blurring techniques  
@@ -31,13 +27,10 @@ This tool offers a wide range of filters, transformations, and real-time webcam 
 - **Mean Removal** – Reduce noise by removing mean color values  
 - **Emboss** – Create embossed, 3D-like effects  
 
----
-
 ### 🔍 Edge Detection
 - **Sobel Edge Detection** – Highlight edges using the Sobel operator  
 - **Prewitt Edge Detection** – Detect edges using the Prewitt method  
 
----
 
 ## 🛠 Usage Guide
 1. **Load Image** – Open an image file via the **File menu**  
@@ -47,7 +40,6 @@ This tool offers a wide range of filters, transformations, and real-time webcam 
 3. **View Results** – Preview processed images in real-time  
 4. **Save Output** – Export final images in multiple formats  
 
----
 
 ## 📌 Notes
 - Designed for learning and experimenting with digital image processing concepts.  
