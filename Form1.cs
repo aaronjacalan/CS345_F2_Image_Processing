@@ -30,7 +30,14 @@ namespace CS345___Image_Processing
 				colorInverseButton,
 				greyscaleButton,
 				histogramButton,
-				sepiaButton
+				sepiaButton,
+				smoothButton,
+				sharpenButton,
+				gaussianBlurButton,
+				embossingButton,
+				meanRemovalButton,
+				sobelEdgeDetectionButton,
+				prewittEdgeDetectionButton
 			};
 
 			InitializeButtonBackgrounds(filterButtons);
@@ -206,84 +213,6 @@ namespace CS345___Image_Processing
 
 
 
-		// IMAGE PROCESSING FILTERS
-		private void CopyButton_Click(object sender, EventArgs e)
-		{
-			if (pictureBox1.Image == null)
-			{
-				MessageBox.Show("No image available to copy!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-
-			Button clickedButton = sender as Button;
-			SetSelectedButton(clickedButton, filterButtons);
-
-			Bitmap original = new Bitmap(pictureBox1.Image);
-			pictureBox2.Image = imageFilter.Copy(original, usePointersCheckBox.Checked);
-		}
-
-		private void greyscaleButton_Click(object sender, EventArgs e)
-		{
-			if (pictureBox1.Image == null)
-			{
-				MessageBox.Show("No image available to convert to greyscale!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-
-			Button clickedButton = sender as Button;
-			SetSelectedButton(clickedButton, filterButtons);
-
-			Bitmap original = new Bitmap(pictureBox1.Image);
-			pictureBox2.Image = imageFilter.Grayscale(original, usePointersCheckBox.Checked);
-		}
-
-		private void colorInverseButton_Click(object sender, EventArgs e)
-		{
-			if (pictureBox1.Image == null)
-			{
-				MessageBox.Show("No image available to apply the invertion of colors!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-
-			Button clickedButton = sender as Button;
-			SetSelectedButton(clickedButton, filterButtons);
-
-			Bitmap original = new Bitmap(pictureBox1.Image);
-			pictureBox2.Image = imageFilter.ColorInverse(original, usePointersCheckBox.Checked);
-		}
-
-		private void histogramButton_Click(object sender, EventArgs e)
-		{
-			if (pictureBox1.Image == null)
-			{
-				MessageBox.Show("No image available to create histogram!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-
-			Button clickedButton = sender as Button;
-			SetSelectedButton(clickedButton, filterButtons);
-
-			Bitmap original = new Bitmap(pictureBox1.Image);
-			pictureBox2.Image = imageFilter.Histogram(original, usePointersCheckBox.Checked);
-		}
-
-		private void sepiaButton_Click(object sender, EventArgs e)
-		{
-			if (pictureBox1.Image == null)
-			{
-				MessageBox.Show("No image available to apply sepia effect!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-				return;
-			}
-
-			Button clickedButton = sender as Button;
-			SetSelectedButton(clickedButton, filterButtons);
-
-			Bitmap original = new Bitmap(pictureBox1.Image);
-			pictureBox2.Image = imageFilter.Sepia(original, usePointersCheckBox.Checked);
-		}
-
-
-
 		// WEBCAM INTEGRATION
 		private void useWebcamToolStripMenuItem_Click(object sender, EventArgs e)
 		{
@@ -291,13 +220,11 @@ namespace CS345___Image_Processing
 
 			if (webcamIntegrations.IsWebcamMode)
 			{
-				usePointersCheckBox.Checked = true;
 				timer1.Start();
 				pictureBox2.Image = null;
 			}
 			else
 			{
-				usePointersCheckBox.Checked = false;
 				timer1.Stop();
 			}
 		}
@@ -314,5 +241,199 @@ namespace CS345___Image_Processing
 		}
 
 
+
+		// IMAGE PROCESSING FILTERS
+		private void CopyButton_Click(object sender, EventArgs e)
+		{
+			if (pictureBox1.Image == null)
+			{
+				MessageBox.Show("No image available to copy!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			Button clickedButton = sender as Button;
+			SetSelectedButton(clickedButton, filterButtons);
+
+			Bitmap original = new Bitmap(pictureBox1.Image);
+			pictureBox2.Image = imageFilter.Copy(original);
+		}
+
+		private void greyscaleButton_Click(object sender, EventArgs e)
+		{
+			if (pictureBox1.Image == null)
+			{
+				MessageBox.Show("No image available to apply greyscale effect!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			Button clickedButton = sender as Button;
+			SetSelectedButton(clickedButton, filterButtons);
+
+			Bitmap original = new Bitmap(pictureBox1.Image);
+			pictureBox2.Image = imageFilter.Grayscale(original);
+		}
+
+		private void colorInverseButton_Click(object sender, EventArgs e)
+		{
+			if (pictureBox1.Image == null)
+			{
+				MessageBox.Show("No image available to apply color invertion effect!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			Button clickedButton = sender as Button;
+			SetSelectedButton(clickedButton, filterButtons);
+
+			Bitmap original = new Bitmap(pictureBox1.Image);
+			pictureBox2.Image = imageFilter.ColorInverse(original);
+		}
+
+		private void histogramButton_Click(object sender, EventArgs e)
+		{
+			if (pictureBox1.Image == null)
+			{
+				MessageBox.Show("No image available to create histogram!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			Button clickedButton = sender as Button;
+			SetSelectedButton(clickedButton, filterButtons);
+
+			Bitmap original = new Bitmap(pictureBox1.Image);
+			pictureBox2.Image = imageFilter.Histogram(original);
+		}
+
+		private void sepiaButton_Click(object sender, EventArgs e)
+		{
+			if (pictureBox1.Image == null)
+			{
+				MessageBox.Show("No image available to apply sepia effect!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			Button clickedButton = sender as Button;
+			SetSelectedButton(clickedButton, filterButtons);
+
+			Bitmap original = new Bitmap(pictureBox1.Image);
+			pictureBox2.Image = imageFilter.Sepia(original);
+		}
+
+
+
+		// CONVULUTION MATRIX FILTERS
+		private void smoothButton_Click(object sender, EventArgs e)
+		{
+			if (pictureBox1.Image == null)
+			{
+				MessageBox.Show("No image available to apply Smooth filter!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			Button clickedButton = sender as Button;
+			SetSelectedButton(clickedButton, filterButtons);
+
+			Bitmap filteredImage = new Bitmap(pictureBox1.Image);
+			ConvMatrix.Smooth(filteredImage);
+			pictureBox2.Image = filteredImage;
+		}
+
+		private void sharpenButton_Click(object sender, EventArgs e)
+		{
+			if (pictureBox1.Image == null)
+			{
+				MessageBox.Show("No image available to apply Sharpen filter!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			Button clickedButton = sender as Button;
+			SetSelectedButton(clickedButton, filterButtons);
+
+			Bitmap filteredImage = new Bitmap(pictureBox1.Image);
+			ConvMatrix.Sharpen(filteredImage);
+			pictureBox2.Image = filteredImage;
+		}
+
+		private void gaussianBlurButton_Click(object sender, EventArgs e)
+		{
+			if (pictureBox1.Image == null)
+			{
+				MessageBox.Show("No image available to apply gaussian blur filter!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			Button clickedButton = sender as Button;
+			SetSelectedButton(clickedButton, filterButtons);
+
+			Bitmap filteredImage = new Bitmap(pictureBox1.Image);
+			ConvMatrix.GaussianBlur(filteredImage);
+			pictureBox2.Image = filteredImage;
+		}
+
+		private void meanRemovalButton_Click(object sender, EventArgs e)
+		{
+			if (pictureBox1.Image == null)
+			{
+				MessageBox.Show("No image available to apply Mean Removal filter!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			Button clickedButton = sender as Button;
+			SetSelectedButton(clickedButton, filterButtons);
+
+			Bitmap filteredImage = new Bitmap(pictureBox1.Image);
+			ConvMatrix.MeanRemoval(filteredImage);
+			pictureBox2.Image = filteredImage;
+		}
+
+		private void embossingButton_Click(object sender, EventArgs e)
+		{
+			if (pictureBox1.Image == null)
+			{
+				MessageBox.Show("No image available to apply Embossing filter!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			Button clickedButton = sender as Button;
+			SetSelectedButton(clickedButton, filterButtons);
+
+			Bitmap filteredImage = new Bitmap(pictureBox1.Image);
+			ConvMatrix.Embossing(filteredImage);
+			pictureBox2.Image = filteredImage;
+		}
+
+
+
+		// EDGE DETECTION FILTERS
+		private void sobelEdgeDetectionButton_Click(object sender, EventArgs e)
+		{
+			if (pictureBox1.Image == null)
+			{
+				MessageBox.Show("No image available to apply Sobel Edge Detection filter!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			Button clickedButton = sender as Button;
+			SetSelectedButton(clickedButton, filterButtons);
+
+			Bitmap filteredImage = new Bitmap(pictureBox1.Image);
+			ConvMatrix.SobelEdgeDetection(filteredImage);
+			pictureBox2.Image = filteredImage;
+		}
+
+		private void prewittEdgeDetectionButton_Click(object sender, EventArgs e)
+		{
+			if (pictureBox1.Image == null)
+			{
+				MessageBox.Show("No image available to apply Prewitt Edge Detection filter!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+				return;
+			}
+
+			Button clickedButton = sender as Button;
+			SetSelectedButton(clickedButton, filterButtons);
+
+			Bitmap filteredImage = new Bitmap(pictureBox1.Image);
+			ConvMatrix.PrewittEdgeDetect(filteredImage);
+			pictureBox2.Image = filteredImage;
+		}
 	}
 }

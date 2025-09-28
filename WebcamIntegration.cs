@@ -52,6 +52,7 @@ namespace CS345___Image_Processing
 
 				isWebcamMode = true;
 				menuItem.Text = "Stop Webcam";
+				menuItem.ForeColor = Color.Red;
 			}
 			catch (Exception ex)
 			{
@@ -69,6 +70,7 @@ namespace CS345___Image_Processing
 
 			isWebcamMode = false;
 			menuItem.Text = "Use Webcam";
+			menuItem.ForeColor = Color.Black;
 		}
 
 		public void CleanupResources()

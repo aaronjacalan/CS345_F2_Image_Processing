@@ -148,7 +148,7 @@
 			this.titleBarPanel.Dock = System.Windows.Forms.DockStyle.Top;
 			this.titleBarPanel.Location = new System.Drawing.Point(0, 0);
 			this.titleBarPanel.Name = "titleBarPanel";
-			this.titleBarPanel.Size = new System.Drawing.Size(1250, 32);
+			this.titleBarPanel.Size = new System.Drawing.Size(1300, 32);
 			this.titleBarPanel.TabIndex = 0;
 			this.titleBarPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TitleBar_MouseDown);
 			this.titleBarPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TitleBar_MouseMove);
@@ -191,7 +191,7 @@
             this.switchToFiltersToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 32);
 			this.menuStrip1.Name = "menuStrip1";
-			this.menuStrip1.Size = new System.Drawing.Size(1250, 24);
+			this.menuStrip1.Size = new System.Drawing.Size(1300, 24);
 			this.menuStrip1.TabIndex = 3;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
@@ -199,8 +199,8 @@
 			// 
 			this.switchToFiltersToolStripMenuItem.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
 			this.switchToFiltersToolStripMenuItem.Name = "switchToFiltersToolStripMenuItem";
-			this.switchToFiltersToolStripMenuItem.Size = new System.Drawing.Size(138, 20);
-			this.switchToFiltersToolStripMenuItem.Text = "Switch to Filters";
+			this.switchToFiltersToolStripMenuItem.Size = new System.Drawing.Size(201, 20);
+			this.switchToFiltersToolStripMenuItem.Text = "Switch to Image Processing";
 			this.switchToFiltersToolStripMenuItem.Click += new System.EventHandler(this.switchToFiltersToolStripMenuItem_Click);
 			// 
 			// pictureBox2
@@ -354,7 +354,7 @@
 			this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
 			this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
 			this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(42)))), ((int)(((byte)(42)))), ((int)(((byte)(42)))));
-			this.ClientSize = new System.Drawing.Size(1250, 530);
+			this.ClientSize = new System.Drawing.Size(1300, 540);
 			this.Controls.Add(this.subtractRGBButton);
 			this.Controls.Add(this.thresholdNumber);
 			this.Controls.Add(this.label1);
