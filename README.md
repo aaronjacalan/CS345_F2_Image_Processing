@@ -1,4 +1,4 @@
-﻿# Image Processing Application
+# Image Processing Application
 
 A comprehensive **C# desktop application** for performing image manipulation and analysis.  
 This tool offers a wide range of filters, transformations, and real-time webcam processing features.
@@ -6,7 +6,8 @@ This tool offers a wide range of filters, transformations, and real-time webcam 
 
 
 ## 🚀 Latest Release
-**v1.2.0** – Added new Filters using a Convolution Matrix based Calculations.
+**v1.2.0** – Added new Filters using a Convolution Matrix based Calculations.  
+👉 [View the latest release here.](https://github.com/aaronjacalan/CS345_F2_Image_Processing/releases/latest)
 > ⚠️ Note: Integrated webcams may not work on some systems. Use an external webcam or a virtual device (e.g., ManyCam).  
 
 
@@ -33,7 +34,7 @@ This tool offers a wide range of filters, transformations, and real-time webcam 
 - **Prewitt Edge Detection** – Detect edges using the Prewitt method  
 
 
-- 
+
 ## 🛠 Usage Guide
 1. **Load Image** – Open an image file via the **File menu**  
 2. **Apply Effects** –  
