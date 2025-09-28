@@ -66,10 +66,10 @@
 			// 
 			this.pictureBox1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
 			this.pictureBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pictureBox1.Location = new System.Drawing.Point(14, 72);
+			this.pictureBox1.Location = new System.Drawing.Point(15, 72);
 			this.pictureBox1.Margin = new System.Windows.Forms.Padding(5);
 			this.pictureBox1.Name = "pictureBox1";
-			this.pictureBox1.Size = new System.Drawing.Size(400, 300);
+			this.pictureBox1.Size = new System.Drawing.Size(417, 313);
 			this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBox1.TabIndex = 0;
 			this.pictureBox1.TabStop = false;
@@ -81,7 +81,7 @@
 			this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnClose.Font = new System.Drawing.Font("Consolas", 12F, System.Drawing.FontStyle.Bold);
 			this.btnClose.ForeColor = System.Drawing.Color.Black;
-			this.btnClose.Location = new System.Drawing.Point(1218, 0);
+			this.btnClose.Location = new System.Drawing.Point(1268, 0);
 			this.btnClose.Margin = new System.Windows.Forms.Padding(0);
 			this.btnClose.Name = "btnClose";
 			this.btnClose.Size = new System.Drawing.Size(32, 32);
@@ -99,7 +99,7 @@
 			this.btnMinimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.btnMinimize.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold);
 			this.btnMinimize.ForeColor = System.Drawing.Color.Black;
-			this.btnMinimize.Location = new System.Drawing.Point(1186, 0);
+			this.btnMinimize.Location = new System.Drawing.Point(1236, 0);
 			this.btnMinimize.Margin = new System.Windows.Forms.Padding(0);
 			this.btnMinimize.Name = "btnMinimize";
 			this.btnMinimize.Size = new System.Drawing.Size(32, 32);
@@ -207,10 +207,10 @@
 			// 
 			this.pictureBox2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
 			this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pictureBox2.Location = new System.Drawing.Point(424, 72);
+			this.pictureBox2.Location = new System.Drawing.Point(442, 72);
 			this.pictureBox2.Margin = new System.Windows.Forms.Padding(5);
 			this.pictureBox2.Name = "pictureBox2";
-			this.pictureBox2.Size = new System.Drawing.Size(400, 300);
+			this.pictureBox2.Size = new System.Drawing.Size(417, 313);
 			this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBox2.TabIndex = 5;
 			this.pictureBox2.TabStop = false;
@@ -219,10 +219,10 @@
 			// 
 			this.pictureBox3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(59)))), ((int)(((byte)(59)))));
 			this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-			this.pictureBox3.Location = new System.Drawing.Point(834, 72);
+			this.pictureBox3.Location = new System.Drawing.Point(869, 72);
 			this.pictureBox3.Margin = new System.Windows.Forms.Padding(5);
 			this.pictureBox3.Name = "pictureBox3";
-			this.pictureBox3.Size = new System.Drawing.Size(400, 300);
+			this.pictureBox3.Size = new System.Drawing.Size(417, 313);
 			this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
 			this.pictureBox3.TabIndex = 6;
 			this.pictureBox3.TabStop = false;
@@ -234,10 +234,10 @@
 			this.chooseBackgroundButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.chooseBackgroundButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.chooseBackgroundButton.ForeColor = System.Drawing.Color.Black;
-			this.chooseBackgroundButton.Location = new System.Drawing.Point(14, 382);
+			this.chooseBackgroundButton.Location = new System.Drawing.Point(14, 395);
 			this.chooseBackgroundButton.Margin = new System.Windows.Forms.Padding(0);
 			this.chooseBackgroundButton.Name = "chooseBackgroundButton";
-			this.chooseBackgroundButton.Size = new System.Drawing.Size(400, 35);
+			this.chooseBackgroundButton.Size = new System.Drawing.Size(418, 62);
 			this.chooseBackgroundButton.TabIndex = 7;
 			this.chooseBackgroundButton.Text = "Choose Image A (Background)";
 			this.chooseBackgroundButton.UseVisualStyleBackColor = false;
@@ -250,10 +250,10 @@
 			this.chooseImageButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.chooseImageButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.chooseImageButton.ForeColor = System.Drawing.Color.Black;
-			this.chooseImageButton.Location = new System.Drawing.Point(424, 382);
+			this.chooseImageButton.Location = new System.Drawing.Point(442, 395);
 			this.chooseImageButton.Margin = new System.Windows.Forms.Padding(0);
 			this.chooseImageButton.Name = "chooseImageButton";
-			this.chooseImageButton.Size = new System.Drawing.Size(400, 35);
+			this.chooseImageButton.Size = new System.Drawing.Size(417, 62);
 			this.chooseImageButton.TabIndex = 8;
 			this.chooseImageButton.Text = "Choose Image B (Image)";
 			this.chooseImageButton.UseVisualStyleBackColor = false;
@@ -266,10 +266,10 @@
 			this.subtractGrayscaleButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.subtractGrayscaleButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.subtractGrayscaleButton.ForeColor = System.Drawing.Color.Black;
-			this.subtractGrayscaleButton.Location = new System.Drawing.Point(834, 382);
+			this.subtractGrayscaleButton.Location = new System.Drawing.Point(869, 395);
 			this.subtractGrayscaleButton.Margin = new System.Windows.Forms.Padding(5);
 			this.subtractGrayscaleButton.Name = "subtractGrayscaleButton";
-			this.subtractGrayscaleButton.Size = new System.Drawing.Size(400, 62);
+			this.subtractGrayscaleButton.Size = new System.Drawing.Size(417, 62);
 			this.subtractGrayscaleButton.TabIndex = 9;
 			this.subtractGrayscaleButton.Text = "Subtract (Greyscale Method)";
 			this.subtractGrayscaleButton.UseVisualStyleBackColor = false;
@@ -287,10 +287,10 @@
 			this.chooseChromaKeyColorButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.chooseChromaKeyColorButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.chooseChromaKeyColorButton.ForeColor = System.Drawing.Color.Black;
-			this.chooseChromaKeyColorButton.Location = new System.Drawing.Point(14, 441);
+			this.chooseChromaKeyColorButton.Location = new System.Drawing.Point(14, 467);
 			this.chooseChromaKeyColorButton.Margin = new System.Windows.Forms.Padding(0);
 			this.chooseChromaKeyColorButton.Name = "chooseChromaKeyColorButton";
-			this.chooseChromaKeyColorButton.Size = new System.Drawing.Size(250, 75);
+			this.chooseChromaKeyColorButton.Size = new System.Drawing.Size(250, 62);
 			this.chooseChromaKeyColorButton.TabIndex = 10;
 			this.chooseChromaKeyColorButton.Text = "Chroma Key Color";
 			this.chooseChromaKeyColorButton.UseVisualStyleBackColor = false;
@@ -299,12 +299,12 @@
 			// chromaKeyThreshold
 			// 
 			this.chromaKeyThreshold.LargeChange = 1;
-			this.chromaKeyThreshold.Location = new System.Drawing.Point(274, 471);
+			this.chromaKeyThreshold.Location = new System.Drawing.Point(274, 498);
 			this.chromaKeyThreshold.Margin = new System.Windows.Forms.Padding(5);
 			this.chromaKeyThreshold.Maximum = 30;
 			this.chromaKeyThreshold.Minimum = 5;
 			this.chromaKeyThreshold.Name = "chromaKeyThreshold";
-			this.chromaKeyThreshold.Size = new System.Drawing.Size(550, 45);
+			this.chromaKeyThreshold.Size = new System.Drawing.Size(585, 45);
 			this.chromaKeyThreshold.TabIndex = 11;
 			this.chromaKeyThreshold.Value = 5;
 			this.chromaKeyThreshold.Scroll += new System.EventHandler(this.chromaKeyThreshold_Scroll);
@@ -314,7 +314,7 @@
 			this.label1.AutoSize = true;
 			this.label1.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.label1.ForeColor = System.Drawing.Color.White;
-			this.label1.Location = new System.Drawing.Point(279, 441);
+			this.label1.Location = new System.Drawing.Point(279, 472);
 			this.label1.Margin = new System.Windows.Forms.Padding(10, 0, 5, 0);
 			this.label1.Name = "label1";
 			this.label1.Size = new System.Drawing.Size(176, 18);
@@ -326,7 +326,7 @@
 			this.thresholdNumber.AutoSize = true;
 			this.thresholdNumber.Font = new System.Drawing.Font("Consolas", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.thresholdNumber.ForeColor = System.Drawing.Color.White;
-			this.thresholdNumber.Location = new System.Drawing.Point(465, 441);
+			this.thresholdNumber.Location = new System.Drawing.Point(460, 472);
 			this.thresholdNumber.Margin = new System.Windows.Forms.Padding(0);
 			this.thresholdNumber.Name = "thresholdNumber";
 			this.thresholdNumber.Size = new System.Drawing.Size(16, 18);
@@ -340,10 +340,10 @@
 			this.subtractRGBButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
 			this.subtractRGBButton.Font = new System.Drawing.Font("Consolas", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
 			this.subtractRGBButton.ForeColor = System.Drawing.Color.Black;
-			this.subtractRGBButton.Location = new System.Drawing.Point(834, 454);
+			this.subtractRGBButton.Location = new System.Drawing.Point(869, 467);
 			this.subtractRGBButton.Margin = new System.Windows.Forms.Padding(5);
 			this.subtractRGBButton.Name = "subtractRGBButton";
-			this.subtractRGBButton.Size = new System.Drawing.Size(400, 62);
+			this.subtractRGBButton.Size = new System.Drawing.Size(417, 62);
 			this.subtractRGBButton.TabIndex = 14;
 			this.subtractRGBButton.Text = "Subtract (RGB Method)";
 			this.subtractRGBButton.UseVisualStyleBackColor = false;

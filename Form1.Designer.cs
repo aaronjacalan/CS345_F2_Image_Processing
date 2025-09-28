@@ -203,8 +203,8 @@ namespace CS345___Image_Processing
 			this.menuStrip1.BackColor = System.Drawing.Color.Snow;
 			this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem,
-            this.useWebcamToolStripMenuItem,
-            this.switchToSubtractionToolStripMenuItem});
+            this.switchToSubtractionToolStripMenuItem,
+            this.useWebcamToolStripMenuItem});
 			this.menuStrip1.Location = new System.Drawing.Point(0, 32);
 			this.menuStrip1.Name = "menuStrip1";
 			this.menuStrip1.Size = new System.Drawing.Size(1300, 24);
