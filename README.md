@@ -4,13 +4,14 @@ A comprehensive **C# desktop application** for performing image manipulation and
 This tool offers a wide range of filters, transformations, and real-time webcam processing features.
 
 
+
 ## 🚀 Latest Release
 **v1.2.0** – Added new Filters using a Convolution Matrix based Calculations.
 > ⚠️ Note: Integrated webcams may not work on some systems. Use an external webcam or a virtual device (e.g., ManyCam).  
 
 
-## ✨ Features
 
+## ✨ Features
 ### 🖼 Basic Image Operations
 - **Copy** – Duplicate images with full fidelity  
 - **Grayscale** – Convert color images to grayscale using luminance algorithms  
@@ -32,6 +33,7 @@ This tool offers a wide range of filters, transformations, and real-time webcam 
 - **Prewitt Edge Detection** – Detect edges using the Prewitt method  
 
 
+- 
 ## 🛠 Usage Guide
 1. **Load Image** – Open an image file via the **File menu**  
 2. **Apply Effects** –  
@@ -41,9 +43,8 @@ This tool offers a wide range of filters, transformations, and real-time webcam 
 4. **Save Output** – Export final images in multiple formats  
 
 
+
 ## 📌 Notes
 - Designed for learning and experimenting with digital image processing concepts.  
 - Supports common image formats (JPG, PNG, BMP, GIF).  
 - Performance may vary depending on image size and filter complexity.  
-
----
