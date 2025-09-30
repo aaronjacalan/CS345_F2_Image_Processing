@@ -6,7 +6,7 @@ This tool offers a wide range of filters, transformations, and real-time webcam 
 
 
 ## 🚀 Latest Release
-**v1.2.0** – Added new Filters using a Convolution Matrix based Calculations.  
+**v1.2.1** – Small bug fixes
 👉 [View the latest release here.](https://github.com/aaronjacalan/CS345_F2_Image_Processing/releases/latest)
 > ⚠️ Note: Integrated webcams may not work on some systems. Use an external webcam or a virtual device (e.g., ManyCam).  
 
