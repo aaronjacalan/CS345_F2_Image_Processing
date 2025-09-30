@@ -44,8 +44,8 @@ namespace CS345___Image_Processing
 			this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-			this.useWebcamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.switchToSubtractionToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+			this.useWebcamToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
 			this.pictureBox2 = new System.Windows.Forms.PictureBox();
 			this.CopyButton = new System.Windows.Forms.Button();
 			this.colorInverseButton = new System.Windows.Forms.Button();
@@ -211,14 +211,6 @@ namespace CS345___Image_Processing
 			this.menuStrip1.TabIndex = 3;
 			this.menuStrip1.Text = "menuStrip1";
 			// 
-			// useWebcamToolStripMenuItem
-			// 
-			this.useWebcamToolStripMenuItem.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
-			this.useWebcamToolStripMenuItem.Name = "useWebcamToolStripMenuItem";
-			this.useWebcamToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
-			this.useWebcamToolStripMenuItem.Text = "Use Webcam";
-			this.useWebcamToolStripMenuItem.Click += new System.EventHandler(this.useWebcamToolStripMenuItem_Click);
-			// 
 			// switchToSubtractionToolStripMenuItem
 			// 
 			this.switchToSubtractionToolStripMenuItem.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
@@ -226,6 +218,14 @@ namespace CS345___Image_Processing
 			this.switchToSubtractionToolStripMenuItem.Size = new System.Drawing.Size(166, 20);
 			this.switchToSubtractionToolStripMenuItem.Text = "Switch to Subtraction";
 			this.switchToSubtractionToolStripMenuItem.Click += new System.EventHandler(this.switchToSubtractionToolStripMenuItem_Click);
+			// 
+			// useWebcamToolStripMenuItem
+			// 
+			this.useWebcamToolStripMenuItem.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Bold);
+			this.useWebcamToolStripMenuItem.Name = "useWebcamToolStripMenuItem";
+			this.useWebcamToolStripMenuItem.Size = new System.Drawing.Size(89, 20);
+			this.useWebcamToolStripMenuItem.Text = "Use Webcam";
+			this.useWebcamToolStripMenuItem.Click += new System.EventHandler(this.useWebcamToolStripMenuItem_Click);
 			// 
 			// pictureBox2
 			// 
@@ -448,6 +448,7 @@ namespace CS345___Image_Processing
 			this.Controls.Add(this.titleBarPanel);
 			this.Controls.Add(this.pictureBox1);
 			this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+			this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
 			this.MainMenuStrip = this.menuStrip1;
 			this.MaximizeBox = false;
 			this.Name = "Form1";
